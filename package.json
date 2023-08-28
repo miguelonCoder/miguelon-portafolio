@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/maptalks": "^0.49.3",
     "astro": "^2.10.14",
-    "maptalks": "^1.0.0-rc.25"
+    "maptalks": "^1.0.0-rc.25",
+    "nanostores": "^0.9.3"
   }
 }

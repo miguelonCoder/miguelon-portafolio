@@ -20,9 +20,52 @@ import Map from '../components/Map.astro'
 </style>
 
 <script>
+
+import { slide } from '../store.js';
+
+const FIRST_SLIDE = 0
+
 document.addEventListener("DOMContentLoaded", function (event) {
+	//event listeners for desktoop scrolls
+	let initialScrollUp = 0
+	let initialScrollDown = 0
 	document.addEventListener('wheel', (event: WheelEvent) => {
-		console.log(event)
+		initialScrollDown = event.deltaY < 0 ? initialScrollDown -= event.deltaY : initialScrollDown
+		initialScrollUp = event.deltaY > 0 ? initialScrollUp += event.deltaY : initialScrollUp
+
+		if(initialScrollUp > 500 ){
+			updateSlide( 1 )
+			initialScrollUp = 0
+			initialScrollDown = 0
+		}
+
+		if(initialScrollDown > 500 ){
+			if ( slide.value != FIRST_SLIDE) updateSlide( -1 )
+			initialScrollDown = 0
+			initialScrollUp = 0
+		}
+
+		//console.log(initialScrollUp, initialScrollDown)
+
+	})
+
+	//event listener for smartphone touches	
+	let initialPosition = FIRST_SLIDE
+	document.addEventListener('touchstart', (event: TouchEvent) => {
+		initialPosition = event.targetTouches[0].screenY
+	})
+
+	document.addEventListener('touchend', (event: TouchEvent) => {
+		const deltaPosition = event.changedTouches[0].screenY - initialPosition
+		if(deltaPosition > 0	) {
+			if ( slide.value != FIRST_SLIDE) updateSlide( -1 )
+		}else {
+			updateSlide( 1 )
+		}
 	})
 })
+
+function updateSlide( delta: number ){
+	slide.set( slide.get() + delta)
+}
 </script>

@@ -23,8 +23,10 @@
 </style>
 <script>
   import * as maptalks from "maptalks";
+  import { slide } from '../store.js';
 
   document.addEventListener("DOMContentLoaded", function (event) {
+
     const map = new maptalks.Map("map", {
       center: [-76.3, 3.45],
       zoom: 14,
@@ -32,7 +34,7 @@
       //static map options
       scrollWheelZoom : false,
       dragPan  : false,
-      
+
       baseLayer: new maptalks.TileLayer("base", {
         urlTemplate:
           'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png',
@@ -44,6 +46,10 @@
           <a  href="https://carto.com/">CARTO</a>`,
       }),
     });
-    console.log(map);
+
+    slide.subscribe(_slide => {
+      console.log(_slide)
+    })
+    
   });
 </script>
