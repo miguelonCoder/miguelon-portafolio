@@ -18,3 +18,11 @@ import Map from '../components/Map.astro'
 		line-height: 1.6;
 	}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function (event) {
+	document.addEventListener('wheel', (event: WheelEvent) => {
+		console.log(event)
+	})
+})
+</script>
