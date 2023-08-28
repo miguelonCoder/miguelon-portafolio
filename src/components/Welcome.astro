@@ -1,7 +1,3 @@
----
-import * as urlPhoto from './images/photo.jpg';
----
-
 <div id="container" class="welcome-container full-welcome animated">
   <h1 id="title-1" class="title-1">Hola! me llamo</h1>
   <div id="photo" class="photo image-container animated" data-name="photo"></div>
@@ -10,7 +6,6 @@ import * as urlPhoto from './images/photo.jpg';
     <img src="./images/miguelon-coder.svg" alt="" />
     <span id="brand-name"> @miguelonCoder</span>
   </div>
-  <img src="./images/photo.jpg" height="0px">
 </div>
 <script>
   import { slide } from "../store.js";
@@ -76,8 +71,9 @@ import * as urlPhoto from './images/photo.jpg';
   .photo {
     border-radius: 100%;
     overflow: hidden;
-    background-image: url("./images/photo.jpg");
+    background-image: url("../images/photo.jpg");
     background-size: cover;
+    view-transition-name: "photo";
   }
   .full-welcome {
     position: fixed;
