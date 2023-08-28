@@ -2,11 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Map from '../components/Map.astro'
+import Welcome from '../components/Welcome.astro';
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<Map></Map>
+		<Welcome/>
+		<Map/>
 	</main>
 </Layout>
 
@@ -65,6 +67,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			if ( slide.value != LAST_SLIDE) updateSlide( 1 )
 		}
 	})
+
+	document.addEventListener('touchmove', (event: TouchEvent) => event.preventDefault())
 })
 
 function updateSlide( delta: number ){
