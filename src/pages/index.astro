@@ -24,6 +24,8 @@ import Map from '../components/Map.astro'
 import { slide } from '../store.js';
 
 const FIRST_SLIDE = 0
+const THREESHOLD_SCROLL = 200
+const LAST_SLIDE = 3
 
 document.addEventListener("DOMContentLoaded", function (event) {
 	//event listeners for desktoop scrolls
@@ -33,13 +35,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		initialScrollDown = event.deltaY < 0 ? initialScrollDown -= event.deltaY : initialScrollDown
 		initialScrollUp = event.deltaY > 0 ? initialScrollUp += event.deltaY : initialScrollUp
 
-		if(initialScrollUp > 500 ){
-			updateSlide( 1 )
+		if(initialScrollUp > THREESHOLD_SCROLL ){
+			if ( slide.value != LAST_SLIDE) updateSlide( 1 )
 			initialScrollUp = 0
 			initialScrollDown = 0
 		}
 
-		if(initialScrollDown > 500 ){
+		if(initialScrollDown > THREESHOLD_SCROLL ){
 			if ( slide.value != FIRST_SLIDE) updateSlide( -1 )
 			initialScrollDown = 0
 			initialScrollUp = 0
@@ -60,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		if(deltaPosition > 0	) {
 			if ( slide.value != FIRST_SLIDE) updateSlide( -1 )
 		}else {
-			updateSlide( 1 )
+			if ( slide.value != LAST_SLIDE) updateSlide( 1 )
 		}
 	})
 })
