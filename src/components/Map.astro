@@ -2,13 +2,23 @@
 ---
 
 <div id="map"></div>
-<style>
+<style is:global>
   #map {
     position: fixed;
     top: 0px;
     bottom: 0px;
     right: 0px;
     left: 0px;
+  }
+
+  .maptalks-attribution {
+    color:slategrey;
+    font-size: small;
+  }
+  .maptalks-attribution span a {
+    color: #1c81b3;
+    text-decoration: none !important;
+    font-size: small;
   }
 </style>
 <script>
@@ -23,7 +33,10 @@
           'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png',
         subdomains: ["a", "b", "c", "d"],
         attribution:
-          '&copy; <a href="http://osm.org">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/">CARTO</a>',
+          `&copy; 
+          <a  href="http://osm.org">OpenStreetMap</a> 
+          contributors, &copy; 
+          <a  href="https://carto.com/">CARTO</a>`,
       }),
     });
     console.log(map);
