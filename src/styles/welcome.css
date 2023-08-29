@@ -28,22 +28,6 @@
   margin: 20px;
 }
 
-.title-2 {
-  margin: 0px;
-}
-
-.rol {
-  font-family: "raleway";
-  font-weight: 200;
-  font-size: 20px;
-}
-
-.name {
-  font-family: "raleway";
-  font-weight: 200;
-  color: #1c81b3;
-}
-
 .brand-container {
   display: flex;
   justify-content: center;
