@@ -17,7 +17,7 @@ import Description from '../components/Description.astro';
 <style>
 	main {
 		width: 100vw;
-		height: 100vh;
+		height: 100svh;
 		font-size: 20px;
 		line-height: 1.6;
 	}
@@ -28,7 +28,7 @@ import Description from '../components/Description.astro';
 import { slide } from '../store.js';
 
 const FIRST_SLIDE = 0
-const THREESHOLD_SCROLL = 200
+const THREESHOLD_SCROLL = 340
 const LAST_SLIDE = 3
 
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -40,13 +40,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		initialScrollUp = event.deltaY > 0 ? initialScrollUp += event.deltaY : initialScrollUp
 
 		if(initialScrollUp > THREESHOLD_SCROLL ){
-			if ( slide.value != LAST_SLIDE) updateSlide( 1 )
+			if ( slide.value != LAST_SLIDE) {
+				updateSlide( 1 )
+				//console.log(slide.value)
+			}
 			initialScrollUp = 0
 			initialScrollDown = 0
 		}
 
 		if(initialScrollDown > THREESHOLD_SCROLL ){
-			if ( slide.value != FIRST_SLIDE) updateSlide( -1 )
+			if ( slide.value != FIRST_SLIDE) {
+				updateSlide( -1 )
+				//console.log(slide.value)
+			}
 			initialScrollDown = 0
 			initialScrollUp = 0
 		}
@@ -63,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	document.addEventListener('touchend', (event: TouchEvent) => {
 		const deltaPosition = event.changedTouches[0].screenY - initialPosition
-		console.log(deltaPosition, 'delta position')
 		if(deltaPosition > 50	) {
 			if ( slide.value != FIRST_SLIDE) updateSlide( -1 )
 		}

@@ -22,3 +22,8 @@ body {
   transition: ease-in;
   transition-duration: 500ms;
 }
+
+.animated-2 {
+  transition: ease-in;
+  transition-duration: 200ms;
+}

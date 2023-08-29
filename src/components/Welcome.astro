@@ -1,7 +1,10 @@
-<div id="container" class="welcome-container full-welcome animated">
+---
+import '../styles/welcome.css'
+---
+<div id="container" class="welcome-container full-welcome animated-2">
   <h1 id="title-1" class="title-1">Hola! me llamo</h1>
   <div id="photo" class="photo image-container animated" data-name="photo"></div>
-  <h2 id="name" class="name title-2 animated">Miguel Angel Ramirez</h2>
+  <h2 id="name" class="name title-2 ">Miguel Angel Ramirez</h2>
   <div id="brand" class="brand-container animated">
     <img src="./images/miguelon-coder.svg" alt="" />
     <span id="brand-name"> @miguelonCoder</span>
@@ -18,7 +21,6 @@
       const photo = document.getElementById('photo')
       const title = document.getElementById('title-1')
       const name = document.getElementById('name')
-      const brand = document.getElementById('brand')
       const brandName = document.getElementById('brand-name')
       
       if (currentTarget == 0 && _slide == 1) {
@@ -58,81 +60,4 @@
   });
 </script>
 <style>
-  .welcome-container {
-    z-index: 10;
-    color: rgb(146, 146, 146);
-    display: flex;
-    height: 100%;
-  }
-  .photo {
-    border-radius: 100%;
-    overflow: hidden;
-    background-image: url("../images/photo.jpg");
-    background-size: cover;
-    view-transition-name: "photo";
-  }
-  .full-welcome {
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .image-container {
-    height: 150px;
-    width: 150px;
-    border: 2px solid white;
-    margin: 20px;
-  }
-  .title-1 {
-  }
-  .title-2 {
-    margin: 0px;
-  }
-  .rol {
-    font-family: "raleway";
-    font-weight: 200;
-    font-size: 20px;
-  }
-  .name {
-    font-family: "raleway";
-    font-weight: 200;
-    color: #1c81b3;
-  }
-  .brand-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin: 30px;
-  }
-  .brand-container img {
-    height: 40px;
-    width: 40px;
-    object-fit: contain;
-  }
-  .brand-container span {
-    font-size: medium;
-    font-weight: 200;
-  }
-
-  .header {
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    height: 56px;
-    z-index: 10;
-    color: rgb(146, 146, 146);
-    background-color: aliceblue;
-    display: none;
-  }
-  .image-container-header {
-    height: 40px;
-    width: 40px;
-    border: 1px solid white;
-    margin: 0px;
-  }
 </style>
