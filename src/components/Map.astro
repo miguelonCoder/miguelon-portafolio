@@ -47,6 +47,9 @@
 
     slide.subscribe((_slide) => {
       switch (_slide) {
+        case 0:
+          slide0();
+          break;
         case 1:
           slide1();
           break;
@@ -61,16 +64,36 @@
       }
     });
 
+    function slide0() {
+      map.animateTo(
+        {
+          zoom: 14,
+          center: [-76.514926, 3.404456],
+          pitch: 0,
+          bearing: 0,
+        },
+        {
+          duration: 500,
+          easing: "in",
+        },
+        function (frame) {
+          if (frame.state.playState === "finished") {
+            console.log("animation 1 finished");
+          }
+        }
+      );
+    }
+
     function slide1() {
       map.animateTo(
         {
           zoom: 13,
-          center: [-76.4, 3.45],
-          pitch: 30,
-          bearing: 60,
+          center: [-76.514926, 3.404456],
+          pitch: 60,
+          bearing: 0,
         },
         {
-          duration: 1000,
+          duration: 500,
           easing: "in",
         },
         function (frame) {
@@ -90,7 +113,7 @@
           bearing: 10,
         },
         {
-          duration: 1000,
+          duration: 500,
           easing: "in",
         },
         function (frame) {
@@ -110,7 +133,7 @@
           bearing: 100,
         },
         {
-          duration: 1000,
+          duration: 500,
           easing: "in",
         },
         function (frame) {

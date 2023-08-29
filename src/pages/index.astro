@@ -3,11 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Map from '../components/Map.astro'
 import Welcome from '../components/Welcome.astro';
+import Description from '../components/Description.astro';
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
 		<Welcome/>
+		<Description/>
 		<Map/>
 	</main>
 </Layout>
@@ -61,9 +63,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	document.addEventListener('touchend', (event: TouchEvent) => {
 		const deltaPosition = event.changedTouches[0].screenY - initialPosition
-		if(deltaPosition > 0	) {
+		console.log(deltaPosition, 'delta position')
+		if(deltaPosition > 50	) {
 			if ( slide.value != FIRST_SLIDE) updateSlide( -1 )
-		}else {
+		}
+		if(deltaPosition < -50){
 			if ( slide.value != LAST_SLIDE) updateSlide( 1 )
 		}
 	})

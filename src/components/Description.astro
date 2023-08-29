@@ -1,0 +1,75 @@
+<div id="container-description" class="description-container animated">
+  <h1 id="title-rol" class="title-rol">Soy</h1>
+  <p id="description" class="description animated">
+    Ingeniero topográfico y desarrollador web frontend, egresado de la Universidad del Valle de Cali - Colombia
+  </p>
+  <div id="curriculum" class="brand-container animated">
+    <a id="curriculum-url" class="curriculum-url" target="_blank" href="https://drive.google.com/file/d/1PZcg50Dtjt0GNL52GoTsNBwXQMPyo-DD/view?usp=drive_link"> Ver currículo en pdf</a>
+  </div>
+</div>
+<script>
+  import { slide } from "../store.js";
+
+  document.addEventListener("DOMContentLoaded", function (event) {
+    slide.subscribe((_slide) => {
+      const container = document.getElementById("container-description");
+
+      if (_slide == 1) {
+        console.log("start transition out");
+        setTimeout(() => {
+          document.startViewTransition(() => {
+            container!.style.display = "flex";
+          });
+        }, 500);
+      } else {
+          console.log("start transition in");
+          document.startViewTransition(() => {
+            container!.style.display = "none";
+          });
+      }
+    });
+  });
+</script>
+<style>
+  .description-container {
+    z-index: 10;
+    color: rgb(146, 146, 146);
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title-rol {
+    font-family: "raleway";
+    color: #1c81b3;
+    margin: 0px;
+  }
+
+  .description {
+    max-width: 500px;
+    margin: 0px 16px;
+    font-size: larger;
+    text-align: center;
+  }
+
+  .brand-container {
+    margin: 50px;
+  }
+
+  .curriculum-url {
+    padding: 5px 36px;
+    background-color: #1c81b3;
+    border-radius: 5px;
+    font-size: 16px;
+    color: aliceblue;
+    cursor: pointer;
+    text-decoration: none;
+  }
+</style>
