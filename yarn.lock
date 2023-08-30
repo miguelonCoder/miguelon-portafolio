@@ -702,6 +702,11 @@
   resolved "https://registry.yarnpkg.com/@types/resolve/-/resolve-1.20.2.tgz#97d26e00cd4a0423b4af620abecf3e6f442b7975"
   integrity sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==
 
+"@types/three@0.127.1":
+  version "0.127.1"
+  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.127.1.tgz#0978054e5daa6485946a3f1518a76412186ae81f"
+  integrity sha512-e90iYq3zde3axANg7BPZY0fKrez1AzveamIIFk23PMh9WtCx91geokDy+yEAIymdIldgUpvezAP6+zCV3oekXw==
+
 "@types/unist@^2", "@types/unist@^2.0.0":
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.7.tgz#5b06ad6894b236a1d2bd6b2f07850ca5c59cf4d6"
@@ -1158,6 +1163,13 @@ devalue@^4.3.2:
   resolved "https://registry.yarnpkg.com/devalue/-/devalue-4.3.2.tgz#cc44e4cf3872ac5a78229fbce3b77e57032727b5"
   integrity sha512-KqFl6pOgOW+Y6wJgu80rHpo2/3H07vr8ntR9rkkFIRETewbf5GaYYcakYfiKz89K+sLsuPkQIZaXDMjUObZwWg==
 
+deyihu-geometry-extrude@0.1.10:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/deyihu-geometry-extrude/-/deyihu-geometry-extrude-0.1.10.tgz#ef8bdff9188c824f0266ced13e084777c3aff628"
+  integrity sha512-qvX/TbA7aELZOwYOlhp2+gJILRGiUPGyErJDgTV8sooyocKERSxYWJxvwCT5bySnrVoJAd9Juh6jF8MvXzVbxA==
+  dependencies:
+    earcut "^2.1.3"
+
 diff@^5.0.0, diff@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-5.1.0.tgz#bc52d298c5ea8df9194800224445ed43ffc87e40"
@@ -1172,6 +1184,11 @@ dset@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/dset/-/dset-3.1.2.tgz#89c436ca6450398396dc6538ea00abc0c54cd45a"
   integrity sha512-g/M9sqy3oHe477Ar4voQxWtaPIFw1jTdKZuomOjhCcBx9nHUNn0pu6NopuFFrTh/TRZIKEj+76vLWFu9BNKk+Q==
+
+earcut@^2.1.3, earcut@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/earcut/-/earcut-2.2.4.tgz#6d02fd4d68160c114825d06890a92ecaae60343a"
+  integrity sha512-/pjZsA1b4RPHbeWZQn66SWS8nZZWLQQ23oE3Eam7aroEFGEvwKAsJfZ9ytiEMycfzXWpca4FA9QIOehf7PocBQ==
 
 eastasianwidth@^0.2.0:
   version "0.2.0"
@@ -1816,6 +1833,14 @@ magic-string@^0.30.2:
   integrity sha512-B7xGbll2fG/VjP+SWg4sX3JynwIU0mjoTc6MPpKNuIvftk6u6vqhDnk1R80b8C2GBR6ywqy+1DcKBrevBg+bmw==
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.4.15"
+
+maptalks.three@0.36.2:
+  version "0.36.2"
+  resolved "https://registry.yarnpkg.com/maptalks.three/-/maptalks.three-0.36.2.tgz#711915b793cac0438bb585581a70e4c8b17ba6c6"
+  integrity sha512-RbLoN/+0CBU9ds/00YyQxBWDf72CcloEIfB2k+gTsr7aVpaQxLitOqrGcFpKhESWlWKc6pXkEmj0V2hRtHbMEA==
+  dependencies:
+    deyihu-geometry-extrude "0.1.10"
+    poly-extrude "^0.2.0"
 
 maptalks@^1.0.0-rc.25:
   version "1.0.0-rc.25"
@@ -2474,6 +2499,13 @@ pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
+poly-extrude@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/poly-extrude/-/poly-extrude-0.2.0.tgz#b1817441691fc1342474354859120fa47a9af76c"
+  integrity sha512-Lt3wIDk4adSooYNZQMvyzjw52S1M2Dhs0XAfzpdWBu0aWGkoy558EQX9iTRq39aX0tAK2kI/gDm1yhGfdntYag==
+  dependencies:
+    earcut "^2.2.4"
+
 postcss@^8.4.27:
   version "8.4.28"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.28.tgz#c6cc681ed00109072816e1557f889ef51cf950a5"
@@ -2935,6 +2967,11 @@ synckit@^0.8.4:
   dependencies:
     "@pkgr/utils" "^2.3.1"
     tslib "^2.5.0"
+
+three@0.127.0:
+  version "0.127.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.127.0.tgz#c463f4d41b2c735dcf8e9e51a388815e80cd3791"
+  integrity sha512-wtgrn+mhYUbobxT7QN3GPdu3SRpSBQvwY6uOzLChWS7QE//f7paDU/+wlzbg+ngeIvBBqjBHSRuywTh8A99Jng==
 
 titleize@^3.0.0:
   version "3.0.0"

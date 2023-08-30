@@ -23,7 +23,10 @@
 </style>
 <script>
   import * as maptalks from "maptalks";
+  import { ArrayPlusDelay } from "../utilities/arrayDelay";
+
   import { slide } from "../store.js";
+  import { properties } from "../geodata/properties";
 
   document.addEventListener("DOMContentLoaded", function (event) {
     const map = new maptalks.Map("map", {
@@ -44,6 +47,12 @@
           <a  href="https://carto.com/">CARTO</a>`,
       }),
     });
+
+    const arrayLayers = [
+      'properties'
+    ]
+
+    const propertiesLayer = new maptalks.VectorLayer(arrayLayers[0]);
 
     slide.subscribe((_slide) => {
       switch (_slide) {
@@ -105,6 +114,7 @@
     }
 
     function slide2() {
+      clearMap('')
       map.animateTo(
         {
           zoom: 13,
@@ -127,21 +137,55 @@
     function slide3() {
       map.animateTo(
         {
-          zoom: 13,
-          center: [-76.6, 3.45],
-          pitch: 30,
-          bearing: 100,
+          zoom: 17,
+          center: [-76.532626, 3.460315],
+          pitch: 0,
+          bearing: 0,
         },
         {
           duration: 500,
           easing: "in",
         },
-        function (frame) {
+        (frame) => {
           if (frame.state.playState === "finished") {
-            console.log("animation 3 finished");
+            propertiesLayer.addTo(map);
+            const geometries = maptalks.GeoJSON.toGeometry(
+              properties,
+              (geometry) => {
+                geometry
+                  .setSymbol({
+                    lineColor: "#000",
+                    lineWidth: 1,
+                    polygonFill: "#1c81b3",
+                    polygonOpacity: 0.0,
+                  })
+                  .on("mouseenter", (e) =>
+                    console.log(e.target.updateSymbol({ polygonOpacity: 0.9 }))
+                  )
+                  .on("mouseout", (e) =>
+                    console.log(e.target.updateSymbol({ polygonOpacity: 0.3 }))
+                  )
+                  .addTo(propertiesLayer);
+              }
+            );
+            ArrayPlusDelay(
+              geometries,
+              function (g: maptalks.Geometry) {
+                g.updateSymbol({ polygonOpacity: 0.5 });
+              },
+              20
+            );
           }
         }
       );
+    }
+
+    function clearMap(exclude: string) {
+      arrayLayers.forEach(layerName => {
+        if (layerName !== exclude) {
+          if(map.getLayer(layerName)) map.removeLayer(layerName);
+        }
+      })
     }
   });
 </script>
