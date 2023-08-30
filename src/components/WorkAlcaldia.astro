@@ -1,0 +1,35 @@
+---
+import Card from "./Card.astro";
+import '../styles/works.css'
+---
+
+<div id="container-alcaldia" class="container alcaldia-container animated">
+  <Card
+    title="Inventario de predios"
+    body="Proyecto realizado por la Alcald'ia de Cali, donde desarroll'e un sistema de inventario para automatizar y estandarizar el flujo de trabajo de la investigaci'on predial."
+    href=""
+    skills={["python", "javascript", "GAS"]}
+  />
+</div>
+<script>
+  import { slide } from "../store.js";
+
+  document.addEventListener("DOMContentLoaded", function (event) {
+    const container = document.getElementById("container-alcaldia");
+    slide.subscribe((_slide) => {
+      if (_slide === 3) {
+        console.log(_slide, "show");
+        document.startViewTransition(() => {
+          container!.style.display = "flex";
+          container!.style.opacity = '1';
+        });
+      } else {
+        console.log(_slide, "hide");
+        document.startViewTransition(() => {
+          container!.style.display = "none";
+          container!.style.opacity = '0';
+        });
+      }
+    });
+  });
+</script>

@@ -1,0 +1,5 @@
+.alcaldia-container {
+  display: none;
+  flex-direction: column;
+  padding-top: 100px;
+}
