@@ -55,7 +55,7 @@ body {
 .title-3 {
   font-weight: 400;
   color: #5178bd;
-  font-size: 20px;
+  font-size: 25px;
   margin: 0px;
   line-height: 30px;
 }
@@ -72,12 +72,6 @@ body {
   margin-bottom: 60px;
 }
 
-.sentece {
-  max-width: 700px;
-  font-size: 0.9rem;
-  line-height: 1.2rem;
-}
-
 .highlight {
   color: #e1e6ff;
   font-weight: 400;
@@ -87,17 +81,35 @@ body {
   .container {
     padding: 0px 20px;
   }
+
+  .sentece {
+    max-width: 700px;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+  }
 }
 
 @media (800px <= width <= 1280px) {
   .container {
     padding: 0px 100px;
   }
+
+  .sentece {
+    max-width: 700px;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
 }
 
 @media (width >= 1280px) {
   .container {
     padding: 0px 200px;
+  }
+
+  .sentece {
+    max-width: 700px;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
   }
 }
 

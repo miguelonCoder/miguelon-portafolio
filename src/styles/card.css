@@ -42,14 +42,14 @@
 
 .body-container {
   width: 100%;
-  height: 170px;
+  height: 200px;
 }
 
 .body-container p {
-  font-weight: 400;
-  font-size: 0.9rem;
-    line-height: 1.25rem;
-    color: #bbbecf;
+  font-weight: 500;
+  font-size: 1rem;
+    line-height: 1.45rem;
+    color: #858794;
 }
 
 .footer-card {
