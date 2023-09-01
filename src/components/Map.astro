@@ -2,6 +2,11 @@
 ---
 
 <div id="map"></div>
+<div class="maptalks-attribution-2">
+  <img class="img-attribution" src="./images/icon-maptalks.png" alt="">
+  <img class="img-attribution" src="./images/icon-openstreetmap.png" alt="">
+  <img class="img-attribution" src="./images/icon-carto.png" alt="">
+</div>
 <style is:global>
   #map {
     position: fixed;
@@ -12,13 +17,23 @@
   }
 
   .maptalks-attribution {
-    color: slategrey;
-    font-size: small;
+    display: none;
   }
-  .maptalks-attribution span a {
-    color: #1c81b3;
-    text-decoration: none !important;
-    font-size: small;
+
+  .maptalks-attribution-2 {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    gap: 8px;
+    z-index: 15;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: rgba(211, 230, 255, 0.452);
+  }
+  .img-attribution {
+    height: 20px;
   }
 </style>
 <script>
@@ -27,6 +42,9 @@
 
   import { slide } from "../store.js";
   import { properties } from "../geodata/properties";
+
+  const GEOMETRY_COLOR = "rgb(46 60 81)";
+  const ANIMATION_DURATION = 2000;
 
   document.addEventListener("DOMContentLoaded", function (event) {
     const map = new maptalks.Map("map", {
@@ -48,9 +66,7 @@
       }),
     });
 
-    const arrayLayers = [
-      'properties'
-    ]
+    const arrayLayers = ["properties"];
 
     const propertiesLayer = new maptalks.VectorLayer(arrayLayers[0]);
 
@@ -68,6 +84,12 @@
         case 3:
           slide3();
           break;
+        case 4:
+          slide4();
+          break;
+        case 5:
+          slide5();
+          break;
         default:
           null;
       }
@@ -77,13 +99,13 @@
       map.animateTo(
         {
           zoom: 14,
-          center: [-76.514926, 3.404456],
+          center: [-76.516026, 3.401456],
           pitch: 0,
           bearing: 0,
         },
         {
-          duration: 500,
-          easing: "in",
+          duration: ANIMATION_DURATION,
+          easing: 'out',
         },
         function (frame) {
           if (frame.state.playState === "finished") {
@@ -94,6 +116,7 @@
     }
 
     function slide1() {
+      clearMap("");
       map.animateTo(
         {
           zoom: 13,
@@ -102,8 +125,8 @@
           bearing: 0,
         },
         {
-          duration: 500,
-          easing: "in",
+          duration: ANIMATION_DURATION,
+          easing: 'out',
         },
         function (frame) {
           if (frame.state.playState === "finished") {
@@ -113,8 +136,8 @@
       );
     }
 
-    function slide2() {
-      clearMap('')
+    function slide5() {
+      clearMap("");
       map.animateTo(
         {
           zoom: 13,
@@ -123,8 +146,8 @@
           bearing: 10,
         },
         {
-          duration: 500,
-          easing: "in",
+          duration: ANIMATION_DURATION,
+          easing: 'out',
         },
         function (frame) {
           if (frame.state.playState === "finished") {
@@ -134,7 +157,32 @@
       );
     }
 
-    function slide3() {
+    function slide2() {
+      clearMap("");
+      propertiesLayer.addTo(map);
+      const geometries = maptalks.GeoJSON.toGeometry(properties, (geometry) => {
+        geometry
+          .setSymbol({
+            lineColor: "#000",
+            lineWidth: 1,
+            polygonFill: GEOMETRY_COLOR,
+            polygonOpacity: 0.0,
+          })
+          .on("mouseenter", (e) =>
+            console.log(e.target.updateSymbol({ polygonOpacity: 0.9 }))
+          )
+          .on("mouseout", (e) =>
+            console.log(e.target.updateSymbol({ polygonOpacity: 0.3 }))
+          )
+          .addTo(propertiesLayer);
+      });
+      ArrayPlusDelay(
+        geometries,
+        function (g: maptalks.Geometry) {
+          g.updateSymbol({ polygonOpacity: 0.6 });
+        },
+        20
+      );
       map.animateTo(
         {
           zoom: 17,
@@ -143,49 +191,64 @@
           bearing: 0,
         },
         {
-          duration: 500,
-          easing: "in",
+          duration: ANIMATION_DURATION,
+          easing: 'out',
         },
         (frame) => {
           if (frame.state.playState === "finished") {
-            propertiesLayer.addTo(map);
-            const geometries = maptalks.GeoJSON.toGeometry(
-              properties,
-              (geometry) => {
-                geometry
-                  .setSymbol({
-                    lineColor: "#000",
-                    lineWidth: 1,
-                    polygonFill: "#1c81b3",
-                    polygonOpacity: 0.0,
-                  })
-                  .on("mouseenter", (e) =>
-                    console.log(e.target.updateSymbol({ polygonOpacity: 0.9 }))
-                  )
-                  .on("mouseout", (e) =>
-                    console.log(e.target.updateSymbol({ polygonOpacity: 0.3 }))
-                  )
-                  .addTo(propertiesLayer);
-              }
-            );
-            ArrayPlusDelay(
-              geometries,
-              function (g: maptalks.Geometry) {
-                g.updateSymbol({ polygonOpacity: 0.5 });
-              },
-              20
-            );
+          }
+        }
+      );
+    }
+
+    function slide3() {
+      clearMap("");
+      map.animateTo(
+        {
+          zoom: 17,
+          center: [-76.5335626, 3.3726469],
+          pitch: 50,
+          bearing: 340,
+        },
+        {
+          duration: ANIMATION_DURATION,
+          easing: 'out',
+        },
+        function (frame) {
+          if (frame.state.playState === "finished") {
+            console.log("animation 2 finished");
+          }
+        }
+      );
+    }
+
+    function slide4() {
+      clearMap("");
+      map.animateTo(
+        {
+          zoom: 9,
+          center: [-76.9264689, 3.9464035],
+          pitch: 0,
+          bearing: 0,
+        },
+        {
+          duration: ANIMATION_DURATION,
+          easing: 'out',
+        },
+        function (frame) {
+          if (frame.state.playState === "finished") {
+            console.log("animation 2 finished");
           }
         }
       );
     }
 
     function clearMap(exclude: string) {
-      arrayLayers.forEach(layerName => {
+      arrayLayers.forEach((layerName) => {
         if (layerName !== exclude) {
-          if(map.getLayer(layerName)) map.removeLayer(layerName);
+          if (map.getLayer(layerName)) map.removeLayer(layerName);
         }
-      })
+      });
     }
   });
 </script>

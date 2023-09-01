@@ -1,16 +1,13 @@
 ---
 import Card from "./Card.astro";
-import "../styles/works.css";
+import '../styles/works.css'
 ---
 
-<div
-  id="container-alcaldia"
-  class="container base-container alcaldia-container animated"
->
+<div id="container-univalle" class="container base-container univalle-container animated">
   <Card
-    title="Inventario de predios"
-    body="Desarrollé un sistema de inventario para estandarizar y automatizar la identificación de los predios pertenecientes al municipio de Cali, donde la información sensada se despliega continuamente en el Geoportal de SIBICA, desarrollado por otro equipo de trabajo del mismo organísmo haciendo uso de Arcgis Online."
-    href="https://geoportal.cali.gov.co/arcgis/apps/webappviewer/index.html?id=4149f814be5442fe8f7ffb9b41d3cf48"
+    title="Portal de VR/RA"
+    body="Proyecto realizado por la Fundación Universidad del Valle para realizar eventos virtuales altamente interactivos. Se realizó con un grupo multidisciplinario, donde mi función se basó en el modelado de la base de datos y el desarrollo de la aplicación front end"
+    href=""
     skills={["python", "javascript", "GAS"]}
   />
   <div id="scroll-indicator" class="scroll-indicator animated">
@@ -38,24 +35,23 @@ import "../styles/works.css";
     </svg>
   </div>
 </div>
-
 <script>
   import { slide } from "../store.js";
 
   document.addEventListener("DOMContentLoaded", function (event) {
-    const container = document.getElementById("container-alcaldia");
+    const container = document.getElementById("container-univalle");
     slide.subscribe((_slide) => {
-      if (_slide === 2) {
+      if (_slide === 3) {
         console.log(_slide, "show");
         document.startViewTransition(() => {
           container!.style.display = "flex";
-          container!.style.opacity = "1";
+          container!.style.opacity = '1';
         });
       } else {
-        console.log(_slide, "hide");
+        console.log(_slide, "hide")
         document.startViewTransition(() => {
           container!.style.display = "none";
-          container!.style.opacity = "0";
+          container!.style.opacity = '0';
         });
       }
     });

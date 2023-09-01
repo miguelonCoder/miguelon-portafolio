@@ -6,14 +6,18 @@ import Welcome from '../components/Welcome.astro';
 import Description from '../components/Description.astro';
 import Experience from '../components/Experience.astro';
 import WorkAlcaldia from '../components/WorkAlcaldia.astro';
+import WorkUnivalle from '../components/WorkUnivalle.astro';
+import WorkGobernacion from '../components/WorkGobernacion.astro';
 ---
 
 <Layout title="Miguelon Coder">
 	<main>
 		<Welcome/>
 		<Description/>
-		<Experience/>
 		<WorkAlcaldia/>
+		<WorkUnivalle/>
+		<WorkGobernacion/>
+		<div class="filter"></div>
 		<Map/>
 	</main>
 </Layout>
@@ -33,7 +37,7 @@ import { slide } from '../store.js';
 
 const FIRST_SLIDE = 0
 const THREESHOLD_SCROLL = 340
-const LAST_SLIDE = 3
+const LAST_SLIDE = 5
 
 document.addEventListener("DOMContentLoaded", function (event) {
 	//event listeners for desktoop scrolls
@@ -46,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		if(initialScrollUp > THREESHOLD_SCROLL ){
 			if ( slide.value != LAST_SLIDE) {
 				updateSlide( 1 )
-				//console.log(slide.value)
+				console.log(slide.value)
 			}
 			initialScrollUp = 0
 			initialScrollDown = 0
@@ -55,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		if(initialScrollDown > THREESHOLD_SCROLL ){
 			if ( slide.value != FIRST_SLIDE) {
 				updateSlide( -1 )
-				//console.log(slide.value)
+				console.log(slide.value)
 			}
 			initialScrollDown = 0
 			initialScrollUp = 0
