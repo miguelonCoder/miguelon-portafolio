@@ -1,0 +1,44 @@
+#map {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+}
+
+.maptalks-attribution {
+  display: none;
+}
+
+.maptalks-attribution-2 {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  display: flex;
+  gap: 8px;
+  z-index: 15;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgba(211, 230, 255, 0.452);
+}
+.img-attribution {
+  height: 20px;
+}
+
+@media (width <= 800px) {
+  .attribution-responsive {
+    margin: 65px 5px;
+  }
+}
+
+@media (800px <= width <= 1280px) {
+  .attribution-responsive {
+    margin: 5px;
+  }
+}
+
+@media (width >= 1280px) {
+  .attribution-responsive {
+    margin: 5px;
+  }
+}

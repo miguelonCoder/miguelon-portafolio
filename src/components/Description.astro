@@ -1,56 +1,65 @@
 ---
-import '../styles/description.css'
+import "../styles/description.css";
 ---
-<div id="container-description" class="container container-slide description-container animated">
-  <h1 id="title-rol" class="title-1">Soy</h1>
-  <p id="description" class="title-3 animated">
-    Ing. topográfico y desarrollador web fullstack.
-  </p>
-  <p id="description-2" class="sentece animated">
-    Trabajé como diseñador gráfico hasta que ingresé a la Universidad del Valle desde el 2013 hasta el 2018, 
-    donde a temprana edad de mi carrera me topé con el mundo de la programación 
-    para el <span class="highlight">análisis geoestadístico</span>  y las <span class="highlight">bases de datos espaciales</span>.
-    Mas adelante desarrollé en compañía una <span class="highlight">aplicación móvil</span> para el turismo de la ciudad de Cali.
-  </p>
 
-  <p id="description-2" class="sentece animated">
-    Al graduarme trabajé en grandes proyectos de <span class="highlight">inventario de infraestructura</span>, fui docente impartiendo cursos de <span class="highlight">sistemas de información geográfica</span>, 
-    <span class="highlight">análisis geoestadístico</span> y programación en general. Más enfocado hacia el desarrollo web, participé en la creación de <span class="highlight">portales de realidad virtual y aumentada.</span>
-    Actualmente soy desarrollador fullstack freelancer y me encuentro trabajando en proyectos de interés personal en el sector inmobiliario y publicitario.
-  </p>
-
-  <p id="description-2" class="sentece animated">
-    En mis tiempos libres amo hacer ejercicio, tocar la guitarra y un poco de dibujo.
-  </p>
-
-  <div id="curriculum" class="curriculum-container animated">
-    <a
-      id="curriculum-url"
-      class="curriculum-url"
-      target="_blank"
-      href="https://drive.google.com/file/d/1PZcg50Dtjt0GNL52GoTsNBwXQMPyo-DD/view?usp=drive_link"
-    >
-      Ver currículo en pdf</a
-    >
+<div
+  id="container-description"
+  class="container container-slide description-container animated"
+>
+  <div class="description-text">
+    <div>
+      <p id="description-2" class="sentece animated">
+        Ingresé a la Universidad del
+        Valle en el 2013, donde inicié con la programación aplicada para el <span
+          class="highlight">análisis geoestadístico</span
+        >, las <span class="highlight">bases de datos espaciales</span> y el desrrollo
+        de
+        <span class="highlight">aplicaciones móviles</span>.
+      </p>
+      <p id="description-2" class="sentece animated">
+        He trabajado en grandes proyectos de <span class="highlight"
+          >inventario de infraestructura urbana</span
+        >, en la docencia impartiendo cursos de <span class="highlight"
+          >sistemas de información geográfica</span
+        >,
+        <span class="highlight">análisis geoestadístico</span> y programación en
+        general. Participé en la creación de
+        <span class="highlight">portales de realidad virtual y aumentada, y</span>
+        actualmente soy desarrollador web fullstack freelancer y me encuentro trabajando
+        en proyectos de interés personal para el sector inmobiliario.
+      </p>
+    </div>
+    <div id="curriculum" class="curriculum-container animated">
+      <a
+        id="curriculum-url"
+        class="curriculum-url"
+        target="_blank"
+        href="https://drive.google.com/file/d/1PZcg50Dtjt0GNL52GoTsNBwXQMPyo-DD/view?usp=drive_link"
+      >
+        Ver currículo en pdf</a
+      >
+    </div>
   </div>
 </div>
 <script>
-  import { slide } from "../store.js";
+  import { slide, titleSlide } from "../store.js";
 
   document.addEventListener("DOMContentLoaded", function (event) {
     const container = document.getElementById("container-description");
     slide.subscribe((_slide) => {
       if (_slide === 1) {
+        titleSlide.set("Acerca");
+
         console.log(_slide, "show");
         document.startViewTransition(() => {
           container!.style.display = "flex";
-          container!.style.opacity = '1';
+          container!.style.opacity = "1";
         });
       } else {
         console.log(_slide, "hide");
         document.startViewTransition(() => {
           container!.style.display = "none";
-          container!.style.opacity = '0';
+          container!.style.opacity = "0";
         });
       }
     });

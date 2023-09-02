@@ -4,6 +4,14 @@
   justify-content: center;
 }
 
+.description-text {
+  overflow-y: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
 .curriculum-container {
   margin-top: 50px;
 }

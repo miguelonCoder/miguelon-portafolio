@@ -40,12 +40,13 @@ import "../styles/works.css";
 </div>
 
 <script>
-  import { slide } from "../store.js";
+  import { slide, titleSlide } from "../store.js";
 
   document.addEventListener("DOMContentLoaded", function (event) {
     const container = document.getElementById("container-alcaldia");
     slide.subscribe((_slide) => {
       if (_slide === 2) {
+        titleSlide.set('Experiencia')
         console.log(_slide, "show");
         document.startViewTransition(() => {
           container!.style.display = "flex";

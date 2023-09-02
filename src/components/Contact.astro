@@ -1,0 +1,149 @@
+---
+import "../styles/contact.css";
+//https://script.google.com/macros/s/AKfycbz1pxaJjHNoPooALgbOnhBWjW5A7Pv4ljyKiNdGFHKC_4IrXTMR42ZXwUM2_BtlwcDxeA/exec
+---
+
+<div id="contact" class="contact contact-container">
+  <div id="contact-title" class="contact-title">
+    <span>Contactame</span>
+  </div>
+  <div id="contact-body" class="contact-body">
+    <span class="disclaimer"
+      >Envía el requerimiento y recibe una respuesta en un plazo de 48 horas.</span
+    >
+    <div id="form-container">
+      <form id="form-requeriment" class="form" name="submit-form">
+        <input
+          class="input-item"
+          name="name"
+          type="text"
+          placeholder="<nombre/>"
+          required
+        />
+        <input
+          class="input-item"
+          name="email"
+          type="email"
+          placeholder="<email/>"
+          required
+        />
+        <textarea
+          class="input-item"
+          name="require"
+          placeholder="<requerimiento/>"
+          required></textarea>
+        <button class="button-item" type="submit">Enviar</button>
+      </form>
+    </div>
+
+    <pre
+      id="sending-message"
+      class="ascii-message">                                                         
+                     _                    _        
+  ___  _ __  __   __(_)  __ _  _ __    __| |  ___  
+ / _ \| '_ \ \ \ / /| | / _` || '_ \  / _` | / _ \ 
+|  __/| | | | \ V / | || (_| || | | || (_| || (_) |
+ \___||_| |_|  \_/  |_| \__,_||_| |_| \__,_| \___/                                             
+    </pre>
+    <pre
+      id="success-message"
+      class="ascii-message">
+                                       _             _               _
+ _ __   ___   __ _  _   _   ___  _ __ (_) _ __ ___  (_)  ___  _ __  | |_   ___  
+| '__| / _ \ / _` || | | | / _ \| '__|| || '_ ` _ \ | | / _ \| '_ \ | __| / _ \ 
+| |   |  __/| (_| || |_| ||  __/| |   | || | | | | || ||  __/| | | || |_ | (_) |
+|_|    \___| \__, | \__,_| \___||_|   |_||_| |_| |_||_| \___||_| |_| \__| \___/ 
+                |_|                                                             
+                     _             _        
+  ___  _ __  __   __(_)  __ _   __| |  ___  
+ / _ \| '_ \ \ \ / /| | / _` | / _` | / _ \ 
+|  __/| | | | \ V / | || (_| || (_| || (_) |
+ \___||_| |_|  \_/  |_| \__,_| \__,_| \___/ 
+                                                  
+    </pre>
+  </div>
+</div>
+<script>
+  import { slide } from "../store";
+
+  document.addEventListener("DOMContentLoaded", function (event) {
+    const title = document.getElementById("contact-title");
+    const container = document.getElementById("contact");
+    const formRequeriment = document.getElementById("form-requeriment");
+    const sendingMessage = document.getElementById("sending-message");
+    const successMessage = document.getElementById("success-message");
+    const light = document.getElementById("filter");
+
+    let IS_OPEN = false;
+
+    const backdrop = document.createElement("div");
+    backdrop.classList.add("backdrop");
+    backdrop.addEventListener("click", () => {
+      closeContact();
+    });
+
+    title?.addEventListener("mouseenter", (event) => {
+      light!.style.backgroundImage = 'radial-gradient(500px 200px at 50% 100%, rgb(50 37 101) 0%,rgba(21, 23, 37, 0.37) 100%)'
+      !IS_OPEN
+        ? (container!.style.transform = "translatey(calc(100% - 80px))")
+        : null;
+    });
+
+    title?.addEventListener("mouseleave", (event) => {
+      light!.style.backgroundImage = 'radial-gradient(500px 200px at 50% 100%, rgb(31 45 85) 0%,rgba(21, 23, 37, 0.37) 100%)'
+
+      !IS_OPEN
+        ? (container!.style.transform = "translatey(calc(100% - 60px))")
+        : null;
+    });
+
+    title?.addEventListener("click", (event) => {
+      if (IS_OPEN) {
+        closeContact();
+      } else {
+        container!.style.transform = "translatey(0px)";
+        IS_OPEN = true;
+        document.body.appendChild(backdrop);
+      }
+    });
+
+    function closeContact() {
+      container!.style.transform = "translatey(calc(100% - 60px))";
+      IS_OPEN = false;
+      document.body.removeChild(backdrop);
+    }
+
+    slide.subscribe((_slide) => {
+      if (_slide !== 0) {
+        container!.style.display = "block";
+        document.getElementById("maptalks-attribution-2")!.style.transform =
+          "translatey(0px)";
+      }
+      if (_slide === 0) {
+        container!.style.display = "none";
+        document.getElementById("maptalks-attribution-2")!.style.transform =
+          "translatey(60px)";
+      }
+    });
+
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbz1pxaJjHNoPooALgbOnhBWjW5A7Pv4ljyKiNdGFHKC_4IrXTMR42ZXwUM2_BtlwcDxeA/exec";
+
+    const form = document.forms["submit-form"];
+
+    form.addEventListener("submit", (e: Event) => {
+      e.preventDefault();
+      formRequeriment!.style.display= 'none'
+      successMessage!.style.display = 'none'
+      sendingMessage!.style.display = 'block'
+      fetch(scriptURL, { method: "POST", body: new FormData(form) })
+        .then((response) => {
+          formRequeriment!.style.display= 'none'
+          successMessage!.style.display = 'block'
+          sendingMessage!.style.display = 'none'
+        })
+        .catch((error) => console.error("Error!", error.message));
+    });
+  });
+</script>
+<script></script>

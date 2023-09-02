@@ -8,16 +8,18 @@ import Experience from '../components/Experience.astro';
 import WorkAlcaldia from '../components/WorkAlcaldia.astro';
 import WorkUnivalle from '../components/WorkUnivalle.astro';
 import WorkGobernacion from '../components/WorkGobernacion.astro';
+import Contact from '../components/Contact.astro';
 ---
 
 <Layout title="Miguelon Coder">
-	<main>
+	<main id="main">
+		<Contact/>
 		<Welcome/>
 		<Description/>
 		<WorkAlcaldia/>
 		<WorkUnivalle/>
 		<WorkGobernacion/>
-		<div class="filter"></div>
+		<div id="filter" class="filter"></div>
 		<Map/>
 	</main>
 </Layout>
@@ -43,7 +45,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	//event listeners for desktoop scrolls
 	let initialScrollUp = 0
 	let initialScrollDown = 0
-	document.addEventListener('wheel', (event: WheelEvent) => {
+	const main = document.getElementById('main')
+	document.body.addEventListener('wheel', (event: WheelEvent) => {
 		initialScrollDown = event.deltaY < 0 ? initialScrollDown -= event.deltaY : initialScrollDown
 		initialScrollUp = event.deltaY > 0 ? initialScrollUp += event.deltaY : initialScrollUp
 
@@ -71,11 +74,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	//event listener for smartphone touches	
 	let initialPosition = FIRST_SLIDE
-	document.addEventListener('touchstart', (event: TouchEvent) => {
+	document.body.addEventListener('touchstart', (event: TouchEvent) => {
 		initialPosition = event.targetTouches[0].screenY
 	})
 
-	document.addEventListener('touchend', (event: TouchEvent) => {
+	document.body.addEventListener('touchend', (event: TouchEvent) => {
 		const deltaPosition = event.changedTouches[0].screenY - initialPosition
 		if(deltaPosition > 50	) {
 			if ( slide.value != FIRST_SLIDE) updateSlide( -1 )
@@ -85,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		}
 	})
 
-	document.addEventListener('touchmove', (event: TouchEvent) => event.preventDefault())
+	document.body.addEventListener('touchmove', (event: TouchEvent) => event.preventDefault())
 })
 
 function updateSlide( delta: number ){

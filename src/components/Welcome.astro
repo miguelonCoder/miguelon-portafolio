@@ -1,10 +1,11 @@
 ---
 import '../styles/welcome.css'
+import Title from './Title.astro';
 ---
-<div id="container" class="welcome-container full-welcome">
-  <h2 id="title-1" class="title-1">Hola! me llamo</h2>
+<div id="container" class="container welcome-container full-welcome">
+  <Title/>
   <h3 id="name" class="name title-3 ">Miguel Angel Ramirez</h3>
-  
+  <span id="rol" class="rol">Ingeniero Topográfico / Desarrollador Fullstack</span>
   <div id="photo" class="photo image-container animated" data-name="photo"></div>
   <div id="brand" class="brand-container animated">
     <svg id="icon" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179.47 123.9">
@@ -28,28 +29,29 @@ import '../styles/welcome.css'
         </g>
       </g>
     </svg>
-    <span id="brand-name">@miguelonCoder</span>
+    <span id="brand-name" class="brand-link">@miguelonCoder</span>
   </div>
+  
 </div>
 <script>
-  import { slide } from "../store.js";
+  import { slide, titleSlide } from "../store.js";
 
   document.addEventListener("DOMContentLoaded", function (event) {
     let currentTarget = 0;
+    titleSlide.set('Hola! Soy')
     slide.subscribe((_slide) => {
 
       const container = document.getElementById('container')
       const photo = document.getElementById('photo')
-      const title = document.getElementById('title-1')
       const name = document.getElementById('name')
+      const rol = document.getElementById('rol')
       const icon = document.getElementsByClassName('cls-1')
       const brandName = document.getElementById('brand-name')
       
       if (currentTarget == 0 && _slide == 1) {
-        console.log("start transition out");
         document.startViewTransition(() => {
           container!.style.height = '60px'
-          container!.style.flexDirection = 'row-reverse'
+          container!.style.flexDirection = 'row'
           container!.style.justifyContent = 'space-between'
           
           Array.prototype.forEach.call(icon, path => {
@@ -59,14 +61,14 @@ import '../styles/welcome.css'
           photo!.style.display = 'none'
 
           brandName!.style.display = 'none'
-          title!.style.display = 'none'
+          rol!.style.display = 'none'
           name!.style.display = 'none'
 
         });
       }
 
       if (currentTarget > 0 && _slide == 0) {
-        console.log("start transition in");
+        titleSlide.set('Hola! Soy')
         document.startViewTransition(() => {
           container!.style.height = '100%'
           container!.style.flexDirection = 'column'
@@ -79,7 +81,7 @@ import '../styles/welcome.css'
           photo!.style.display = 'block'
 
           brandName!.style.display = 'inline'
-          title!.style.display = 'block'
+          rol!.style.display = 'block'
           name!.style.display = 'block'
         });
       }

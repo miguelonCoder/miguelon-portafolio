@@ -1,0 +1,129 @@
+@media (width <=800px) {
+  .contact-container {
+    width: 100%;
+    transform: translatey(calc(100% - 60px));
+  }
+}
+
+@media (800px <=width <=1280px) {
+  .contact-container {
+    width: 700px;
+    transform: translatey(calc(100% - 60px));
+  }
+}
+
+@media (width >=1280px) {
+  .contact-container {
+    width: 700px;
+    transform: translatey(calc(100% - 60px));
+  }
+}
+
+.backdrop {
+  position: fixed;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: 15;
+}
+
+.contact {
+  z-index: 20;
+  position: fixed;
+  bottom: 0px;
+  transition: 300ms ease-in;
+  justify-content: center;
+  border-radius: 0.7em 0.7em 0px 0px;
+  border: 1px solid rgb(40 60 81);
+  background-color: rgb(14, 17, 31);
+  left: 50%;
+  translate: -50%;
+  display: none;
+}
+
+
+
+.contact-title {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 20px;
+  border-bottom: 1px solid rgb(40 60 81);
+  font-family: 'Share Tech Mono';
+  color: rgb(112, 141, 172);
+}
+
+.contact-body {
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: inherit;
+}
+
+.disclaimer {
+  font-size: .75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  color: rgb(97, 124, 153);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.input-item {
+  background-color: transparent;
+  --tw-text-opacity: 1;
+  color: rgb(191 199 210 / var(--tw-text-opacity));
+  caret-color: #5178bd;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  border: 0;
+  font-family: 'Share Tech Mono';
+  font-size: 0.9rem;
+  letter-spacing: 0.1rem;
+  padding-bottom: 5px;
+  border-bottom: 2px dotted rgba(73, 93, 114, 0.678);
+
+}
+
+.input-item::placeholder {
+  color: rgba(73, 93, 114, 0.678);
+  font-size: 0.9rem;
+  letter-spacing: 0.1rem;
+  /* Firefox */
+}
+
+.button-item {
+  align-self: flex-end;
+  margin-top: 2rem;
+  padding: 10px 36px;
+  width: 120px;
+  background-color: cornflowerblue;
+  border-radius: 20px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  font-weight: 800px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 0px;
+}
+
+#sending-message {
+  display: none;
+}
+
+#success-message {
+  display: none;
+}
+
+.ascii-message {
+  font-size: 10px;
+  line-height: 10px;
+  color: rgb(121, 100, 237);
+}

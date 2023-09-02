@@ -6,6 +6,7 @@
 }
 html {
   font-family: 'Red Hat Display', Raleway;
+  font-size: 18px;
   background: #13151A;
   background-size: 224px;
   color: #bbbecf;
@@ -19,6 +20,7 @@ body {
   overscroll-behavior: contain;
 }
 
+
 .filter {
   position: fixed;
   top: 0px;
@@ -27,7 +29,8 @@ body {
   height: 100%;
   z-index: 5;
   pointer-events: none;
-  background-image:radial-gradient(500px 100px at 50% 100%, rgb(19, 27, 49) 0%,rgba(21, 23, 37, 0.24) 100%);
+  transition: 1s linear;
+  background-image:radial-gradient(500px 200px at 50% 100%, rgb(31 45 85) 0%,rgba(21, 23, 37, 0.37) 100%);
 }
 
 .animated {
@@ -56,7 +59,7 @@ body {
   font-weight: 400;
   color: #5178bd;
   font-size: 25px;
-  margin: 0px;
+  margin: 10px 0px;
   line-height: 30px;
 }
 
@@ -68,8 +71,8 @@ body {
   top: 0px;
   right: 0px;
   left: 0px;
-  margin-top: 60px;
-  margin-bottom: 60px;
+  padding-top: 60px !important;
+  padding-bottom: 60px !important;
 }
 
 .highlight {
@@ -84,8 +87,8 @@ body {
 
   .sentece {
     max-width: 700px;
-    font-size: 0.9rem;
-    line-height: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.4rem;
   }
 }
 
@@ -96,8 +99,8 @@ body {
 
   .sentece {
     max-width: 700px;
-    font-size: 1.2rem;
-    line-height: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.4rem;
   }
 }
 
@@ -108,7 +111,7 @@ body {
 
   .sentece {
     max-width: 700px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.5rem;
   }
 }

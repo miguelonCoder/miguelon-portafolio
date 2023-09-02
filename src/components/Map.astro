@@ -1,41 +1,13 @@
 ---
+import '../styles/map.css'
 ---
 
 <div id="map"></div>
-<div class="maptalks-attribution-2">
+<div id="maptalks-attribution-2" class="maptalks-attribution-2 attribution-responsive">
   <img class="img-attribution" src="./images/icon-maptalks.png" alt="">
   <img class="img-attribution" src="./images/icon-openstreetmap.png" alt="">
   <img class="img-attribution" src="./images/icon-carto.png" alt="">
 </div>
-<style is:global>
-  #map {
-    position: fixed;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-  }
-
-  .maptalks-attribution {
-    display: none;
-  }
-
-  .maptalks-attribution-2 {
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    display: flex;
-    gap: 8px;
-    z-index: 15;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 10px;
-    background-color: rgba(211, 230, 255, 0.452);
-  }
-  .img-attribution {
-    height: 20px;
-  }
-</style>
 <script>
   import * as maptalks from "maptalks";
   import { ArrayPlusDelay } from "../utilities/arrayDelay";

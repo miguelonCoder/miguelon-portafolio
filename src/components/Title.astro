@@ -1,0 +1,10 @@
+<h2 id="title-1" class="title-1">Hola! me llamo</h2>
+<script>
+  import { slide, titleSlide } from "../store.js";
+
+  document.addEventListener("DOMContentLoaded", function (event) {
+    titleSlide.subscribe(_title => {
+      document.getElementById('title-1')!.innerHTML =_title
+    })
+  });
+</script>
