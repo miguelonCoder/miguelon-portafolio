@@ -36,12 +36,21 @@ import '../styles/works.css'
   </div>
 </div>
 <script>
-  import { slide } from "../store.js";
+  import * as maptalks from "maptalks";
+  import { slide, titleSlide, sharedMap } from "../store.js";
+  import {
+    ANIMATION_DURATION,
+    DEFAULT_GEOMETRY_COLOR,
+    SlideNumber,
+  } from "../constants";
+  import { clearMap, ArrayPlusDelay } from "../utilities";
 
   document.addEventListener("DOMContentLoaded", function (event) {
     const container = document.getElementById("container-univalle");
-    slide.subscribe((_slide) => {
-      if (_slide === 3) {
+    sharedMap.subscribe(map => {
+          slide.subscribe((_slide) => {
+      if (_slide === SlideNumber.Univalle) {
+        updateMap()
         console.log(_slide, "show");
         document.startViewTransition(() => {
           container!.style.display = "flex";
@@ -55,5 +64,23 @@ import '../styles/works.css'
         });
       }
     });
+    function updateMap() {
+        //addGeometry()
+        map.animateTo(
+        {
+          zoom: 17,
+          center: [-76.5335626, 3.3726469],
+          pitch: 50,
+          bearing: 340,
+        },
+        {
+          duration: ANIMATION_DURATION,
+          easing: 'out',
+        }
+        );
+        clearMap(map, "");
+      }
+    })
+
   });
 </script>

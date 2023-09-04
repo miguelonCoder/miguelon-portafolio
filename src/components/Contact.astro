@@ -65,6 +65,7 @@ import "../styles/contact.css";
 </div>
 <script>
   import { slide } from "../store";
+  import { SlideNumber } from '../constants'
 
   document.addEventListener("DOMContentLoaded", function (event) {
     const title = document.getElementById("contact-title");
@@ -84,6 +85,7 @@ import "../styles/contact.css";
 
     title?.addEventListener("mouseenter", (event) => {
       light!.style.backgroundImage = 'radial-gradient(500px 200px at 50% 100%, rgb(50 37 101) 0%,rgba(21, 23, 37, 0.37) 100%)'
+      title!.style.color = 'rgb(122, 151, 182)'
       !IS_OPEN
         ? (container!.style.transform = "translatey(calc(100% - 80px))")
         : null;
@@ -91,7 +93,7 @@ import "../styles/contact.css";
 
     title?.addEventListener("mouseleave", (event) => {
       light!.style.backgroundImage = 'radial-gradient(500px 200px at 50% 100%, rgb(31 45 85) 0%,rgba(21, 23, 37, 0.37) 100%)'
-
+      title!.style.color = 'rgb(112, 141, 172)'
       !IS_OPEN
         ? (container!.style.transform = "translatey(calc(100% - 60px))")
         : null;
@@ -114,12 +116,12 @@ import "../styles/contact.css";
     }
 
     slide.subscribe((_slide) => {
-      if (_slide !== 0) {
+      if (_slide !== SlideNumber.Welcome) {
         container!.style.display = "block";
         document.getElementById("maptalks-attribution-2")!.style.transform =
           "translatey(0px)";
       }
-      if (_slide === 0) {
+      if (_slide === SlideNumber.Welcome) {
         container!.style.display = "none";
         document.getElementById("maptalks-attribution-2")!.style.transform =
           "translatey(60px)";

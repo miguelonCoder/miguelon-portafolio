@@ -40,24 +40,83 @@ import "../styles/works.css";
 </div>
 
 <script>
-  import { slide, titleSlide } from "../store.js";
+  import * as maptalks from "maptalks";
+  import { slide, titleSlide, sharedMap } from "../store.js";
+  import {
+    ANIMATION_DURATION,
+    DEFAULT_GEOMETRY_COLOR,
+    SlideNumber,
+  } from "../constants";
+  import { clearMap, ArrayPlusDelay } from "../utilities";
+
+  import { properties } from "../geodata/properties";
 
   document.addEventListener("DOMContentLoaded", function (event) {
     const container = document.getElementById("container-alcaldia");
-    slide.subscribe((_slide) => {
-      if (_slide === 2) {
-        titleSlide.set('Experiencia')
-        console.log(_slide, "show");
-        document.startViewTransition(() => {
-          container!.style.display = "flex";
-          container!.style.opacity = "1";
-        });
-      } else {
-        console.log(_slide, "hide");
-        document.startViewTransition(() => {
-          container!.style.display = "none";
-          container!.style.opacity = "0";
-        });
+    sharedMap.subscribe((map) => {
+      slide.subscribe((_slide) => {
+        if (_slide === SlideNumber.Alcaldia) {
+          updateMap()
+          titleSlide.set("Experiencia");
+          document.startViewTransition(() => {
+            container!.style.display = "flex";
+            container!.style.opacity = "1";
+          });
+        } else {
+          console.log(_slide, "hide");
+          document.startViewTransition(() => {
+            container!.style.display = "none";
+            container!.style.opacity = "0";
+          });
+        }
+      });
+
+      function updateMap() {
+        addGeometry()
+        map.animateTo(
+          {
+            zoom: 17,
+            center: [-76.532626, 3.460315],
+            pitch: 0,
+            bearing: 0,
+          },
+          {
+            duration: ANIMATION_DURATION,
+            easing: "out",
+          }
+        );
+        clearMap(map, "properties");
+      }
+
+      function addGeometry() {
+        const propertiesLayer = new maptalks.VectorLayer("properties");
+        propertiesLayer.addTo(map);
+        const geometries = maptalks.GeoJSON.toGeometry(
+          properties,
+          (geometry) => {
+            geometry
+              .setSymbol({
+                lineColor: "#000",
+                lineWidth: 1,
+                polygonFill: DEFAULT_GEOMETRY_COLOR,
+                polygonOpacity: 0.0,
+              })
+              .on("mouseenter", (e) =>
+                console.log(e.target.updateSymbol({ polygonOpacity: 0.9 }))
+              )
+              .on("mouseout", (e) =>
+                console.log(e.target.updateSymbol({ polygonOpacity: 0.3 }))
+              )
+              .addTo(propertiesLayer);
+          }
+        );
+        ArrayPlusDelay(
+          geometries,
+          function (g: maptalks.Geometry) {
+            g.updateSymbol({ polygonOpacity: 0.6 });
+          },
+          20
+        );
       }
     });
   });

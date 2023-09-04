@@ -1,0 +1,54 @@
+---
+import '../styles/experience.css'
+---
+<div id="container-experience" class="container container-slide experience-container animated">
+
+</div>
+<script>
+  import { slide, sharedMap, titleSlide } from "../store.js";
+  import { clearMap, ArrayPlusDelay } from "../utilities";
+  import {
+    ANIMATION_DURATION,
+    DEFAULT_GEOMETRY_COLOR,
+    SlideNumber,
+  } from "../constants";
+
+  document.addEventListener("DOMContentLoaded", function (event) {
+    const container = document.getElementById("container-experience");
+    sharedMap.subscribe((map) => {
+      slide.subscribe((_slide) => {
+        if (_slide === SlideNumber.Skills) {
+          updateMap()
+          titleSlide.set("Skills");
+          document.startViewTransition(() => {
+            container!.style.display = "flex";
+            container!.style.opacity = '1';
+          });
+        } else {
+          document.startViewTransition(() => {
+            container!.style.display = "none";
+            container!.style.opacity = '0';
+          });
+        }
+      });
+
+      function updateMap() {
+        //addGeometry()
+        map.animateTo(
+        {
+          zoom: 9,
+          center: [-76.9264689, 3.9464035],
+          pitch: 0,
+          bearing: 0,
+        },
+        {
+          duration: ANIMATION_DURATION,
+          easing: 'out',
+        }
+        );
+        clearMap(map, "");
+      }
+    })
+
+  });
+</script>

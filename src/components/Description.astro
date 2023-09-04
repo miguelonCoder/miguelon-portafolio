@@ -9,9 +9,9 @@ import "../styles/description.css";
   <div class="description-text">
     <div>
       <p id="description-2" class="sentece animated">
-        Ingresé a la Universidad del
-        Valle en el 2013, donde inicié con la programación aplicada para el <span
-          class="highlight">análisis geoestadístico</span
+        Ingresé a la Universidad del Valle en el 2013, donde inicié con la
+        programación aplicada para el <span class="highlight"
+          >análisis geoestadístico</span
         >, las <span class="highlight">bases de datos espaciales</span> y el desrrollo
         de
         <span class="highlight">aplicaciones móviles</span>.
@@ -24,7 +24,9 @@ import "../styles/description.css";
         >,
         <span class="highlight">análisis geoestadístico</span> y programación en
         general. Participé en la creación de
-        <span class="highlight">portales de realidad virtual y aumentada, y</span>
+        <span class="highlight"
+          >portales de realidad virtual y aumentada, y</span
+        >
         actualmente soy desarrollador web fullstack freelancer y me encuentro trabajando
         en proyectos de interés personal para el sector inmobiliario.
       </p>
@@ -42,25 +44,52 @@ import "../styles/description.css";
   </div>
 </div>
 <script>
-  import { slide, titleSlide } from "../store.js";
+  import { slide, titleSlide, sharedMap } from "../store.js";
+  import { ANIMATION_DURATION, SlideNumber } from "../constants";
+  import { clearMap } from '../utilities/clearMap'
 
   document.addEventListener("DOMContentLoaded", function (event) {
     const container = document.getElementById("container-description");
-    slide.subscribe((_slide) => {
-      if (_slide === 1) {
-        titleSlide.set("Acerca");
+    sharedMap.subscribe((map) => {
+      slide.subscribe((_slide) => {
+        if (_slide === SlideNumber.Description) {
+          updateMap()
 
-        console.log(_slide, "show");
-        document.startViewTransition(() => {
-          container!.style.display = "flex";
-          container!.style.opacity = "1";
-        });
-      } else {
-        console.log(_slide, "hide");
-        document.startViewTransition(() => {
-          container!.style.display = "none";
-          container!.style.opacity = "0";
-        });
+          titleSlide.set("Acerca");
+
+          console.log(_slide, "show");
+          document.startViewTransition(() => {
+            container!.style.display = "flex";
+            container!.style.opacity = "1";
+          });
+        } else {
+          console.log(_slide, "hide");
+          document.startViewTransition(() => {
+            container!.style.display = "none";
+            container!.style.opacity = "0";
+          });
+        }
+      })
+
+      function updateMap(){
+        map.animateTo(
+        {
+          zoom: 13,
+          center: [-76.514926, 3.404456],
+          pitch: 60,
+          bearing: 0,
+        },
+        {
+          duration: ANIMATION_DURATION,
+          easing: 'out',
+        },
+        function (frame) {
+          if (frame.state.playState === "finished") {
+            console.log("animation 1 finished");
+          }
+        }
+      )
+      clearMap(map, '')
       }
     });
   });
