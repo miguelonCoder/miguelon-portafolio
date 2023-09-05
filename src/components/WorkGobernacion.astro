@@ -54,17 +54,12 @@ import "../styles/works.css";
       slide.subscribe((_slide) => {
         if (_slide === SlideNumber.Gobernacion) {
           updateMap()
-          document.startViewTransition(() => {
-            container!.style.display = "flex";
-            container!.style.opacity = "1";
-          });
-        } else {
-          console.log(_slide, "hide");
-          document.startViewTransition(() => {
-            container!.style.display = "none";
-            container!.style.opacity = "0";
-          });
-        }
+          container!.style.display = "flex";
+          container!.style.opacity = '1';
+      } else {
+          container!.style.display = "none";
+          container!.style.opacity = '0';
+      }
       });
       function updateMap() {
         //addGeometry()
@@ -76,8 +71,8 @@ import "../styles/works.css";
           bearing: 0,
         },
         {
-          duration: ANIMATION_DURATION,
-          easing: 'out',
+          duration: ANIMATION_DURATION * 2.5,
+          easing: 'in',
         }
         );
         clearMap(map, "");

@@ -43,6 +43,15 @@ body {
   transition-duration: 200ms;
 }
 
+.fade-animated-in {
+  transition: ease-in;
+  transition-duration: 100ms;
+}
+.fade-animated-out {
+  transition: ease-out;
+  transition-duration: 100ms;
+}
+
 .title-1 {
   color: #ffffff;
   font-size: 32px;
@@ -115,4 +124,5 @@ body {
     line-height: 1.5rem;
   }
 }
+
 

@@ -1,8 +1,70 @@
 ---
-import '../styles/experience.css'
----
-<div id="container-experience" class="container container-slide experience-container animated">
+import "../styles/skills.css";
 
+const skillFront = [
+  { name: "Angular", link: "https://angular.io/" },
+  { name: "React", link: "https://react.dev/" },
+  { name: "Astro", link: "https://astro.build/" },
+];
+
+const skillBack = [
+  { name: "Node", link: "https://nodejs.org/en" },
+  { name: "NestJS", link: "https://nestjs.com/" },
+];
+
+const skillData = [
+  { name: "Postgres", link: "https://www.postgresql.org/" },
+  { name: "R", link: "https://www.r-project.org/" },
+  { name: "Python", link: "https://www.python.org/" },
+  { name: "GAS", link: "https://developers.google.com/apps-script" },
+];
+---
+
+<div
+  id="container-skills"
+  class="container container-slide skills-container animated"
+>
+  <h3 class="title-skill-group title-3">Front</h3>
+  <ul class="skill-group">
+    {
+      skillFront.map(({ name, link }) => {
+        return (
+          <a href={link} target="_blank" class="card-skill card-skill-size">
+            <img src={`./images/${name.toLowerCase()}.png`} alt="" />
+            <span>{name}</span>
+          </a>
+        );
+      })
+    }
+  </ul>
+
+  <h3 class="title-skill-group title-3">Back</h3>
+  <ul class="skill-group">
+    {
+      skillBack.map(({ name, link }) => {
+        return (
+          <a href={link} target="_blank" class="card-skill card-skill-size">
+            <img src={`./images/${name.toLowerCase()}.png`} alt="" />
+            <span>{name}</span>
+          </a>
+        );
+      })
+    }
+  </ul>
+
+  <h3 class="title-skill-group title-3">Analisis de datos</h3>
+  <ul class="skill-group">
+    {
+      skillData.map(({ name, link }) => {
+        return (
+          <a href={link} target="_blank" class="card-skill card-skill-size">
+            <img src={`./images/${name.toLowerCase()}.png`} alt="" />
+            <span>{name}</span>
+          </a>
+        );
+      })
+    }
+  </ul>
 </div>
 <script>
   import { slide, sharedMap, titleSlide } from "../store.js";
@@ -14,21 +76,16 @@ import '../styles/experience.css'
   } from "../constants";
 
   document.addEventListener("DOMContentLoaded", function (event) {
-    const container = document.getElementById("container-experience");
+    const container = document.getElementById("container-skills");
+
     sharedMap.subscribe((map) => {
       slide.subscribe((_slide) => {
         if (_slide === SlideNumber.Skills) {
-          updateMap()
-          titleSlide.set("Skills");
-          document.startViewTransition(() => {
-            container!.style.display = "flex";
-            container!.style.opacity = '1';
-          });
+          updateMap();
+          titleSlide.set("Habilidades");
+          container!.style.display = "flex";
         } else {
-          document.startViewTransition(() => {
-            container!.style.display = "none";
-            container!.style.opacity = '0';
-          });
+          container!.style.display = "none";
         }
       });
 
@@ -36,19 +93,18 @@ import '../styles/experience.css'
         //addGeometry()
         map.animateTo(
         {
-          zoom: 9,
-          center: [-76.9264689, 3.9464035],
-          pitch: 0,
-          bearing: 0,
-        },
-        {
-          duration: ANIMATION_DURATION,
-          easing: 'out',
-        }
+            zoom: 15,
+            center: [-76.514926, 3.454456],
+            pitch: 60,
+            bearing: -30,
+          },
+          {
+            duration: ANIMATION_DURATION,
+            easing: "out",
+          }
         );
         clearMap(map, "");
       }
-    })
-
+    });
   });
 </script>

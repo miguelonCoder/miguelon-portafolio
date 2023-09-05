@@ -57,17 +57,9 @@ import "../styles/works.css";
       slide.subscribe((_slide) => {
         if (_slide === SlideNumber.Alcaldia) {
           updateMap()
-          titleSlide.set("Experiencia");
-          document.startViewTransition(() => {
             container!.style.display = "flex";
-            container!.style.opacity = "1";
-          });
         } else {
-          console.log(_slide, "hide");
-          document.startViewTransition(() => {
             container!.style.display = "none";
-            container!.style.opacity = "0";
-          });
         }
       });
 
@@ -77,8 +69,8 @@ import "../styles/works.css";
           {
             zoom: 17,
             center: [-76.532626, 3.460315],
-            pitch: 0,
-            bearing: 0,
+            pitch: 30,
+            bearing: -60,
           },
           {
             duration: ANIMATION_DURATION,
@@ -97,7 +89,7 @@ import "../styles/works.css";
             geometry
               .setSymbol({
                 lineColor: "#000",
-                lineWidth: 1,
+                lineWidth: 0,
                 polygonFill: DEFAULT_GEOMETRY_COLOR,
                 polygonOpacity: 0.0,
               })

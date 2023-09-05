@@ -66,7 +66,7 @@ import Title from "./Title.astro";
         const brandName = document.getElementById("brand-name");
 
         if (currentTarget == SlideNumber.Welcome && _slide == SlideNumber.Welcome + 1) {
-          document.startViewTransition(() => {
+
             container!.style.height = "60px";
             container!.style.flexDirection = "row";
             container!.style.justifyContent = "space-between";
@@ -80,13 +80,13 @@ import Title from "./Title.astro";
             brandName!.style.display = "none";
             rol!.style.display = "none";
             name!.style.display = "none";
-          });
+
         }
 
         if (currentTarget > SlideNumber.Welcome && _slide == SlideNumber.Welcome) {
           updateMap();
           titleSlide.set("Hola! Soy");
-          document.startViewTransition(() => {
+
             container!.style.height = "100%";
             container!.style.flexDirection = "column";
             container!.style.justifyContent = "center";
@@ -100,7 +100,6 @@ import Title from "./Title.astro";
             brandName!.style.display = "inline";
             rol!.style.display = "block";
             name!.style.display = "block";
-          });
         }
         currentTarget = _slide;
       });

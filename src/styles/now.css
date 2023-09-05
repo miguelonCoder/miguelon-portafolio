@@ -1,11 +1,11 @@
-.description-container {
+.now-container {
   display: none;
   flex-direction: column;
   justify-content: center;
 }
 
 
-.description-text {
+.now-text {
   overflow-y: visible;
   display: flex;
   flex-direction: column;

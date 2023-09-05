@@ -51,17 +51,11 @@ import '../styles/works.css'
           slide.subscribe((_slide) => {
       if (_slide === SlideNumber.Univalle) {
         updateMap()
-        console.log(_slide, "show");
-        document.startViewTransition(() => {
           container!.style.display = "flex";
           container!.style.opacity = '1';
-        });
       } else {
-        console.log(_slide, "hide")
-        document.startViewTransition(() => {
           container!.style.display = "none";
           container!.style.opacity = '0';
-        });
       }
     });
     function updateMap() {
@@ -71,10 +65,10 @@ import '../styles/works.css'
           zoom: 17,
           center: [-76.5335626, 3.3726469],
           pitch: 50,
-          bearing: 340,
+          bearing:-20,
         },
         {
-          duration: ANIMATION_DURATION,
+          duration: ANIMATION_DURATION * 2.5,
           easing: 'out',
         }
         );

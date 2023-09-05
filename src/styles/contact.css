@@ -39,6 +39,7 @@
   left: 50%;
   translate: -50%;
   display: none;
+  view-transition-name: main-contact;
 }
 
 
