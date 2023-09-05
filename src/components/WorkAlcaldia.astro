@@ -57,6 +57,7 @@ import "../styles/works.css";
       slide.subscribe((_slide) => {
         if (_slide === SlideNumber.Alcaldia) {
           updateMap()
+          titleSlide.set('Experiencia')
             container!.style.display = "flex";
         } else {
             container!.style.display = "none";

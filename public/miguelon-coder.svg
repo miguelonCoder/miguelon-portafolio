@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179.47 123.9">
   <defs>
     <style>
-      .cls-1 { fill: #000; }
+      .cls-1 { fill: #5178bd; }
       @media (prefers-color-scheme: dark) {
-      .cls-1 { fill: #FFF; }
+      .cls-1 { fill: #5178bd; }
       }
     </style>
   </defs>

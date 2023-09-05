@@ -1,0 +1,59 @@
+---
+import "../styles/resources.css";
+---
+
+<div
+  id="container-resources"
+  class="container container-slide resources-container"
+>
+  <div class="resources-text">
+    <div>
+      <p id="resources-2" class="sentece animated">
+        ¿Estas interesado en usar mi portafolio o mi curriculo en PDF?
+      </p>
+    </div>
+  </div>
+  <script>
+    import { slide, titleSlide, sharedMap } from "../store.js";
+    import { ANIMATION_DURATION, SlideNumber } from "../constants";
+    import { clearMap } from "../utilities/clearMap";
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+      const container = document.getElementById("container-resources");
+      sharedMap.subscribe((map) => {
+        slide.subscribe((_slide) => {
+          if (_slide === SlideNumber.Resources) {
+            updateMap();
+
+            titleSlide.set("Recursos");
+
+            container!.style.display = "flex";
+          } else {
+            container!.style.display = "none";
+          }
+        });
+
+        function updateMap() {
+          map.animateTo(
+            {
+              zoom: 13,
+              center: [-76.514926, 3.404456],
+              pitch: 60,
+              bearing: 0,
+            },
+            {
+              duration: ANIMATION_DURATION,
+              easing: "out",
+            },
+            function (frame) {
+              if (frame.state.playState === "finished") {
+                console.log("animation 1 finished");
+              }
+            }
+          );
+          clearMap(map, "");
+        }
+      });
+    });
+  </script>
+</div>

@@ -59,13 +59,13 @@
 }
 
   .card-skill-size {
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
     padding: 10px;
   }
 
   .card-skill img {
-    height: 70px;
+    height: 50px;
   }
 
   .card-skill span {
@@ -82,13 +82,13 @@
 }
 
   .card-skill-size {
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
     padding: 10px;
   }
 
   .card-skill img {
-    height: 70px;
+    height: 50px;
   }
 
   .card-skill span {

@@ -11,6 +11,7 @@ import WorkGobernacion from '../components/WorkGobernacion.astro';
 import Contact from '../components/Contact.astro';
 import Skills from '../components/Skills.astro';
 import Now from '../components/Now.astro';
+import Resources from '../components/Resources.astro';
 ---
 
 <Layout title="Miguelon Coder">
@@ -23,6 +24,7 @@ import Now from '../components/Now.astro';
 		<WorkUnivalle/>
 		<WorkGobernacion/>
 		<Now/>
+		<Resources/>
 		<div id="filter" class="filter"></div>
 		<Map/>
 	</main>
@@ -43,7 +45,7 @@ import { slide } from '../store.js';
 
 const FIRST_SLIDE = 0
 const THREESHOLD_SCROLL = 340
-const LAST_SLIDE = 6
+const LAST_SLIDE = 7
 
 document.addEventListener("DOMContentLoaded", function (event) {
 	//event listeners for desktoop scrolls
