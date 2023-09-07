@@ -8,9 +8,19 @@ import "../styles/resources.css";
 >
   <div class="resources-text">
     <div>
-      <p id="resources-2" class="sentece animated">
-        ¿Estas interesado en usar mi portafolio o mi curriculo en PDF?
+      <p id="resources-2" class="title-container">
+        ¿Te interesa este portafolio?
       </p>
+      <ul class="resource-group">
+          <a
+          id="curriculum-url"
+          class="curriculum-url"
+          target="_blank"
+          href="https://github.com/miguelonCoder/react-maptalks"
+        >
+          <span>Ver en Github</span>
+        </a>
+      </ul>
     </div>
   </div>
   <script>
@@ -28,6 +38,7 @@ import "../styles/resources.css";
             titleSlide.set("Recursos");
 
             container!.style.display = "flex";
+            
           } else {
             container!.style.display = "none";
           }

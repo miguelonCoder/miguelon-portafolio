@@ -52,7 +52,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	let initialScrollUp = 0
 	let initialScrollDown = 0
 	const main = document.getElementById('main')
-	document.body.addEventListener('wheel', (event: WheelEvent) => {
+	
+	document.body.addEventListener('wheel', wheel)
+
+	let initialPosition = FIRST_SLIDE
+	document.body.addEventListener('touchstart', touchStart)
+
+	document.body.addEventListener('touchend', touchEnd)
+
+	document.body.addEventListener('touchmove', touchMove)
+
+	
+	
+	
+
+	//Event functions
+	function wheel(event: WheelEvent){
 		initialScrollDown = event.deltaY < 0 ? initialScrollDown -= event.deltaY : initialScrollDown
 		initialScrollUp = event.deltaY > 0 ? initialScrollUp += event.deltaY : initialScrollUp
 
@@ -73,18 +88,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			initialScrollDown = 0
 			initialScrollUp = 0
 		}
+	}
 
-		//console.log(initialScrollUp, initialScrollDown)
+	function touchMove(event: TouchEvent){
+		event.preventDefault()
+	}
 
-	})
-
-	//event listener for smartphone touches	
-	let initialPosition = FIRST_SLIDE
-	document.body.addEventListener('touchstart', (event: TouchEvent) => {
+	function touchStart (event: TouchEvent) {
 		initialPosition = event.targetTouches[0].screenY
-	})
+	}
 
-	document.body.addEventListener('touchend', (event: TouchEvent) => {
+	function touchEnd(event: TouchEvent){
 		const deltaPosition = event.changedTouches[0].screenY - initialPosition
 		if(deltaPosition > 50	) {
 			if ( slide.value != FIRST_SLIDE) updateSlide( -1 )
@@ -92,9 +106,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 		if(deltaPosition < -50){
 			if ( slide.value != LAST_SLIDE) updateSlide( 1 )
 		}
-	})
-
-	document.body.addEventListener('touchmove', (event: TouchEvent) => event.preventDefault())
+	}
 })
 
 function updateSlide( delta: number ){

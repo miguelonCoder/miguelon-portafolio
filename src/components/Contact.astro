@@ -76,6 +76,7 @@ import "../styles/contact.css";
     const light = document.getElementById("filter");
 
     let IS_OPEN = false;
+    let visitResources = false
 
     const backdrop = document.createElement("div");
     backdrop.classList.add("backdrop");
@@ -116,7 +117,7 @@ import "../styles/contact.css";
     }
 
     slide.subscribe((_slide) => {
-      if (_slide !== SlideNumber.Welcome) {
+      if (_slide !== SlideNumber.Welcome && _slide !== SlideNumber.Resources) {
         container!.style.display = "block";
         document.getElementById("maptalks-attribution-2")!.style.transform =
           "translatey(0px)";
@@ -125,6 +126,16 @@ import "../styles/contact.css";
         container!.style.display = "none";
         document.getElementById("maptalks-attribution-2")!.style.transform =
           "translatey(60px)";
+      }
+      if (_slide === SlideNumber.Resources) {
+        container!.style.display = "block";
+        container!.style.transform = "translatey(0px)";
+        IS_OPEN = true;
+        visitResources = true
+      }
+      if (_slide === SlideNumber.Resources - 1 && visitResources) {
+        container!.style.transform = "translatey(calc(100% - 60px))";
+        IS_OPEN = false;
       }
     });
 
