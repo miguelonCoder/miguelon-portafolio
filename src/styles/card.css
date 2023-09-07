@@ -67,10 +67,6 @@
   text-decoration: none;
 }
 
-.skills-container {
-   height: 30px;
-}
-
 .list-skills {
   display: flex;
   flex-direction: row-reverse;

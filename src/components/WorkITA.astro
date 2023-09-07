@@ -5,10 +5,16 @@ import '../styles/works.css'
 
 <div id="container-ita" class="container base-container ita-container animated">
   <Card
-    title="Portal de VR/RA"
-    body="Proyecto realizado por la Fundación Universidad del Valle para realizar eventos virtuales altamente interactivos. Se realizó con un grupo multidisciplinario, donde mi función se basó en el modelado de la base de datos y el desarrollo de la aplicación front end"
+    title="Docencia"
+    body="Fui docente en el Instituto Técnico Agrícola, donde dicté diversos cursos entre los que destacan por su estrecha relación con el desarrollo Sistemas de información Geográfica, Modelos digitales de Elevación y la Fotogrametría, haciendo uso de lenguajes como R-Statistic, Python y Javascript"
     href=""
-    skills={["python", "javascript", "GAS"]}
+    skills={[
+      { name: "Postgres", link: "https://www.postgresql.org/" },
+      { name: "R", link: "https://www.r-project.org/" },
+      { name: "Python", link: "https://www.python.org/" },
+      { name: "GAS", link: "https://developers.google.com/apps-script" },
+      { name: "Node", link: "https://nodejs.org/en" },
+    ]}
   />
   <div id="scroll-indicator" class="scroll-indicator animated">
     <svg
@@ -36,24 +42,66 @@ import '../styles/works.css'
   </div>
 </div>
 <script>
-  import { slide } from "../store.js";
+  import * as maptalks from 'maptalks'
+  import { slide, sharedMap } from "../store.js";
+  import { SlideNumber, ANIMATION_DURATION, DEFAULT_GEOMETRY_COLOR } from '../constants' 
+   import { clearMap } from "../utilities";
+   import { ita } from '../geodata'
 
   document.addEventListener("DOMContentLoaded", function (event) {
     const container = document.getElementById("container-ita");
-    slide.subscribe((_slide) => {
-      if (_slide === 4) {
-        console.log(_slide, "show");
-        document.startViewTransition(() => {
+    sharedMap.subscribe(map => {
+          slide.subscribe((_slide) => {
+      if (_slide === SlideNumber.Ita) {
+        updateMap()
           container!.style.display = "flex";
           container!.style.opacity = '1';
-        });
       } else {
-        console.log(_slide, "hide")
-        document.startViewTransition(() => {
           container!.style.display = "none";
           container!.style.opacity = '0';
-        });
       }
     });
+    function updateMap() {
+        addGeometry()
+        console.log(map)
+        map.animateTo(
+        {
+          zoom: 15.25,
+          center: [-76.3024865, 3.9137305],
+          pitch: 0,
+          bearing:0,
+        },
+        {
+          duration: ANIMATION_DURATION * 0.2,
+          easing: 'out',
+        }
+        );
+        clearMap(map, "ita");
+      }
+
+      function addGeometry () {
+      const itaLayer = new maptalks.VectorLayer("ita");
+      itaLayer.addTo(map);
+        const geometries = maptalks.GeoJSON.toGeometry(
+        ita,
+          (geometry) => {
+            geometry
+              .setSymbol({
+                lineColor: "#000",
+                lineWidth: 0,
+                polygonFill: DEFAULT_GEOMETRY_COLOR,
+                polygonOpacity: 0.6,
+              })
+              .on("mouseenter", (e) =>
+                e.target.updateSymbol({ polygonOpacity: 0.9 })
+              )
+              .on("mouseout", (e) =>
+                e.target.updateSymbol({ polygonOpacity: 0.3 })
+              )
+              .addTo(itaLayer);
+          }
+        );
+    }
+    })
   });
 </script>

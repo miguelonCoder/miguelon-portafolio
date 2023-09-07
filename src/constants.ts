@@ -4,6 +4,7 @@ export enum SlideNumber {
   Skills,
   Alcaldia,
   Univalle,
+  Ita,
   Gobernacion,
   Now,
   Resources

@@ -10,6 +10,13 @@
   display: none;
 }
 
+.attribution-item {
+  text-decoration: none;
+  padding: 0px;
+  margin: 0px;
+  line-height: 20px;
+}
+
 .maptalks-attribution-2 {
   position: fixed;
   bottom: 0px;

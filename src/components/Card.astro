@@ -5,7 +5,7 @@ interface Props {
 	title: string;
 	body: string;
 	href: string;
-	skills: Array<string>;
+	skills: Array<{ name: string; link: string }>;
 }
 
 const { href, title, body, skills } = Astro.props;
@@ -19,25 +19,27 @@ const { href, title, body, skills } = Astro.props;
 		<p>{body}</p>
 	</div>
 	<div class="footer-card">
-	<div class="link-container">
-		<a class="link" target="_blank" href={href}>Ver Resultados</a>
-	</div>
-	<div class="skills-container">
-		<ul class="list-skills">
-			<li>
-				<img class="img-skill" src="./images/gas.png" alt="">
-			</li>
-			<li>
-				<img class="img-skill" src="./images/python.png" alt="">
-			</li>
-			<li>
-				<img class="img-skill" src="./images/js.png" alt="">
-			</li>
-			<li>
-				<img class="img-skill" src="./images/postgres.png" alt="">
-			</li>
-		</ul>
-	</div>
-	</div>
+		<div class="link-container">
+			<a class="link" target="_blank" href={href}>Ver Resultados</a>
+		</div>
+		<div>
+			<ul class="list-skills">
+				{
+					skills.map((skill) => {
+						console.log(skill);
 
+						return (
+							<a href={skill.link}>
+								<img
+									class="img-skill"
+									src={`./images/${skill.name.toLowerCase()}.png`}
+									alt=""
+								/>
+							</a>
+						);
+					})
+				}
+			</ul>
+		</div>
+	</div>
 </div>

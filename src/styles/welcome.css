@@ -44,6 +44,8 @@
 .brand-link {
   font-size: medium;
   font-family: 'Barlow Condensed';
+  text-decoration: none;
+  color: white;
 }
 
 .rol {

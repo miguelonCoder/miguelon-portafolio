@@ -11,7 +11,12 @@ import "../styles/works.css";
     title="Inventario de predios"
     body="Desarrollé un sistema de inventario para estandarizar y automatizar la identificación de los predios pertenecientes al municipio de Cali, donde la información sensada se despliega continuamente en el Geoportal de SIBICA, desarrollado por otro equipo de trabajo del mismo organísmo haciendo uso de Arcgis Online."
     href="https://geoportal.cali.gov.co/arcgis/apps/webappviewer/index.html?id=4149f814be5442fe8f7ffb9b41d3cf48"
-    skills={["python", "javascript", "GAS"]}
+    skills={[
+      { name: "Postgres", link: "https://www.postgresql.org/" },
+      { name: "js", link: "https://www.javascript.com/" },
+      { name: "Python", link: "https://www.python.org/" },
+      { name: "GAS", link: "https://developers.google.com/apps-script" },
+    ]}
   />
   <div id="scroll-indicator" class="scroll-indicator animated">
     <svg
@@ -56,16 +61,16 @@ import "../styles/works.css";
     sharedMap.subscribe((map) => {
       slide.subscribe((_slide) => {
         if (_slide === SlideNumber.Alcaldia) {
-          updateMap()
-          titleSlide.set('Experiencia')
-            container!.style.display = "flex";
+          updateMap();
+          titleSlide.set("Experiencia");
+          container!.style.display = "flex";
         } else {
-            container!.style.display = "none";
+          container!.style.display = "none";
         }
       });
 
       function updateMap() {
-        addGeometry()
+        addGeometry();
         map.animateTo(
           {
             zoom: 17,
@@ -95,10 +100,10 @@ import "../styles/works.css";
                 polygonOpacity: 0.0,
               })
               .on("mouseenter", (e) =>
-                console.log(e.target.updateSymbol({ polygonOpacity: 0.9 }))
+                e.target.updateSymbol({ polygonOpacity: 0.9 })
               )
               .on("mouseout", (e) =>
-                console.log(e.target.updateSymbol({ polygonOpacity: 0.3 }))
+                e.target.updateSymbol({ polygonOpacity: 0.3 })
               )
               .addTo(propertiesLayer);
           }
