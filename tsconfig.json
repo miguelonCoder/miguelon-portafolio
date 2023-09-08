@@ -2,5 +2,9 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "suppressImplicitAnyIndexErrors": true,
-  }
+  },
+  "typeRoots": [
+    "./typings",
+    "./node_modules/@types/"
+  ]
 }

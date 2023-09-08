@@ -2019,6 +2019,11 @@ magic-string@^0.30.2:
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.4.15"
 
+maptalks.animatemarker@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/maptalks.animatemarker/-/maptalks.animatemarker-0.4.1.tgz#4783ea1f0a3299dcb3d01535bff0c8caa8fad75b"
+  integrity sha512-UN+OytDYA6wYe68KRCY64VWX3OFvHCpbQubatAIVAxwKGV/GWbnCju934WN6I20XPBqEoGm0dt/ti/rikbC2Zg==
+
 maptalks.three@0.36.2:
   version "0.36.2"
   resolved "https://registry.yarnpkg.com/maptalks.three/-/maptalks.three-0.36.2.tgz#711915b793cac0438bb585581a70e4c8b17ba6c6"

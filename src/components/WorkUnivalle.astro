@@ -42,6 +42,7 @@ import '../styles/works.css'
 </div>
 <script>
   import * as maptalks from "maptalks";
+  import { AnimateMarkerLayer } from 'maptalks.animatemarker'
   import { slide, titleSlide, sharedMap } from "../store.js";
   import {
     ANIMATION_DURATION,
@@ -49,6 +50,7 @@ import '../styles/works.css'
     SlideNumber,
   } from "../constants";
   import { clearMap, ArrayPlusDelay } from "../utilities";
+  import { univalle } from '../geodata'
 
   document.addEventListener("DOMContentLoaded", function (event) {
     const container = document.getElementById("container-univalle");
@@ -64,7 +66,7 @@ import '../styles/works.css'
       }
     });
     function updateMap() {
-        //addGeometry()
+        addGeometry()
         map.animateTo(
         {
           zoom: 17,
@@ -77,9 +79,71 @@ import '../styles/works.css'
           easing: 'out',
         }
         );
-        clearMap(map, "");
+        clearMap(map, "animatemarker");
       }
-    })
 
+      function addGeometry(){
+      function getGradient(colors: Array<number>) {
+        return {
+            type : 'radial',
+            colorStops : [
+              [0.70, 'rgba(' + colors.join() + ', 0.5)'],
+              [0.30, 'rgba(' + colors.join() + ', 1)'],
+              [0.20, 'rgba(' + colors.join() + ', 1)'],
+              [0.00 , 'rgba(' + colors.join() + ', 0)']
+            ]
+        };
+    }
+
+    // earthquakes data from all_month.js(usgs.gov)
+    const geometries = maptalks.GeoJSON.toGeometry(univalle);
+    const layer = new AnimateMarkerLayer(
+        'animatemarker',
+        geometries,
+        {
+            'animation' : 'scale,fade',
+            'randomAnimation' : true,
+            'geometryEvents' : false
+        }
+    )
+    .setStyle([
+        {
+            filter : ['<=', 'mag', 2],
+            symbol : {
+                'markerType' : 'ellipse',
+                'markerLineWidth' : 0,
+                'markerFill' : getGradient([46, 60, 81]),
+                'markerFillOpacity' : 0.8,
+                'markerWidth' : 40,
+                'markerHeight' : 40
+            }
+        },
+        {
+            filter : ['<=', 'mag', 5],
+            symbol : {
+                'markerType' : 'ellipse',
+                'markerLineWidth' : 0,
+                'markerFill' : getGradient([46, 60, 81]),
+                'markerFillOpacity' : 0.8,
+                'markerWidth' : 60,
+                'markerHeight' : 60
+            }
+        },
+        {
+            filter : ['>', 'mag', 5],
+            symbol : {
+                'markerType' : 'ellipse',
+                'markerLineWidth' : 0,
+                'markerFill' : getGradient([46, 60, 81]),
+                'markerFillOpacity' : 0.8,
+                'markerWidth' : 100,
+                'markerHeight' : 100
+            }
+        }
+    ])
+    .addTo(map);
+
+    }
+    })
   });
 </script>
