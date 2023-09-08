@@ -64,10 +64,10 @@ import "../styles/contact.css";
   </div>
 </div>
 <script>
-  import { slide } from "../store";
+  import { slide, isContacted } from "../store";
   import { SlideNumber } from '../constants'
 
-  document.addEventListener("DOMContentLoaded", function (event) {
+  document.addEventListener("DOMContentLoaded", function () {
     const title = document.getElementById("contact-title");
     const container = document.getElementById("contact");
     const formRequeriment = document.getElementById("form-requeriment");
@@ -84,7 +84,7 @@ import "../styles/contact.css";
       closeContact();
     });
 
-    title?.addEventListener("mouseenter", (event) => {
+    title?.addEventListener("mouseenter", () => {
       light!.style.backgroundImage = 'radial-gradient(500px 200px at 50% 100%, rgb(50 37 101) 0%,rgba(21, 23, 37, 0.37) 100%)'
       title!.style.color = 'rgb(122, 151, 182)'
       !IS_OPEN
@@ -92,7 +92,7 @@ import "../styles/contact.css";
         : null;
     });
 
-    title?.addEventListener("mouseleave", (event) => {
+    title?.addEventListener("mouseleave", () => {
       light!.style.backgroundImage = 'radial-gradient(500px 200px at 50% 100%, rgb(31 45 85) 0%,rgba(21, 23, 37, 0.37) 100%)'
       title!.style.color = 'rgb(112, 141, 172)'
       !IS_OPEN
@@ -100,7 +100,7 @@ import "../styles/contact.css";
         : null;
     });
 
-    title?.addEventListener("click", (event) => {
+    title?.addEventListener("click", () => {
       if (IS_OPEN) {
         closeContact();
       } else {

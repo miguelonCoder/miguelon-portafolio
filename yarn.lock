@@ -1373,6 +1373,14 @@ eastasianwidth@^0.2.0:
   resolved "https://registry.yarnpkg.com/eastasianwidth/-/eastasianwidth-0.2.0.tgz#696ce2ec0aa0e6ea93a397ffcf24aa7840c827cb"
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
+echarts@^5.4.3:
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/echarts/-/echarts-5.4.3.tgz#f5522ef24419164903eedcfd2b506c6fc91fb20c"
+  integrity sha512-mYKxLxhzy6zyTi/FaEbJMOZU1ULGEQHaeIeuMR5L+JnJTpz+YR03mnnpBhbR4+UYJAgiXgpyTVLffPAjOTLkZA==
+  dependencies:
+    tslib "2.3.0"
+    zrender "5.4.4"
+
 electron-to-chromium@^1.4.477:
   version "1.4.503"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.503.tgz#7bd43927ea9b4198697672d28d8fbd0da016a7a1"
@@ -2023,6 +2031,11 @@ maptalks.animatemarker@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/maptalks.animatemarker/-/maptalks.animatemarker-0.4.1.tgz#4783ea1f0a3299dcb3d01535bff0c8caa8fad75b"
   integrity sha512-UN+OytDYA6wYe68KRCY64VWX3OFvHCpbQubatAIVAxwKGV/GWbnCju934WN6I20XPBqEoGm0dt/ti/rikbC2Zg==
+
+maptalks.e3@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/maptalks.e3/-/maptalks.e3-0.5.2.tgz#5d21eff9ad4702be64f12b70a9753c664da7c4f2"
+  integrity sha512-WlNJaXE1D2j2aOqOFj7Bm1l6fiH6dw2RZbWFzpWKbw6OwDXL3NdiChLQnTuIjy/MRB6w7WffaC7LtCZ5EN72/g==
 
 maptalks.three@0.36.2:
   version "0.36.2"
@@ -3229,6 +3242,11 @@ tsconfig-resolver@^3.0.1:
     strip-bom "^4.0.0"
     type-fest "^0.13.1"
 
+tslib@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
+  integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
+
 tslib@^2.5.0, tslib@^2.6.0:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.6.2.tgz#703ac29425e7b37cd6fd456e92404d46d1f3e4ae"
@@ -3559,6 +3577,13 @@ zousan@^2.3.3:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/zousan/-/zousan-2.5.1.tgz#514a8aad3cbba412fb59a4e0ebaffdd72e2dd4c6"
   integrity sha512-ZER+1EJNPHs9G3I6kTqhTmeqPjdU8XoaSIFzaUcSWmxcZBeXMuf5LM6Ih8LLNlQ46wg2Au+3ayn7KgjklVnOfA==
+
+zrender@5.4.4:
+  version "5.4.4"
+  resolved "https://registry.yarnpkg.com/zrender/-/zrender-5.4.4.tgz#8854f1d95ecc82cf8912f5a11f86657cb8c9e261"
+  integrity sha512-0VxCNJ7AGOMCWeHVyTrGzUgrK4asT4ml9PEkeGirAkKNYXYzoPJCLvmyfdoOXcjTHPs10OZVMfD1Rwg16AZyYw==
+  dependencies:
+    tslib "2.3.0"
 
 zwitch@^2.0.0, zwitch@^2.0.4:
   version "2.0.4"

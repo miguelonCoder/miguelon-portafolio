@@ -9,7 +9,8 @@ import "../styles/works.css";
 >
   <Card
     title="Inventario Víal Valle del Cauca"
-    body="Proyecto realizado por la Gobernación del Valle del Cauca"
+    body="Proyecto realizado por la Gobernación del Valle del Cauca, donde hice uso de la programación con javascript y Google App Script para la planificación y el análisis logístico de los levantamientos topográficos de las vías del departamento."
+    hrefString="Ver geoportal"
     href="https://www.arcgis.com/apps/mapviewer/index.html?url=https://services6.arcgis.com/HBGeyaWcRNll5Rmh/ArcGIS/rest/services/RED_VIAL_VALLE_V/FeatureServer&source=sd"
     skills={[
       { name: "js", link: "https://www.javascript.com/" },
@@ -43,6 +44,8 @@ import "../styles/works.css";
 </div>
 <script>
   import * as maptalks from "maptalks";
+  import * as echarts from "echarts";
+  import { E3Layer } from "maptalks.e3";
   import { slide, titleSlide, sharedMap } from "../store.js";
   import {
     ANIMATION_DURATION,
@@ -50,35 +53,76 @@ import "../styles/works.css";
     SlideNumber,
   } from "../constants";
   import { clearMap, ArrayPlusDelay } from "../utilities";
+  import { vias } from "../geodata";
 
   document.addEventListener("DOMContentLoaded", function (event) {
     const container = document.getElementById("container-gobernacion");
     sharedMap.subscribe((map) => {
       slide.subscribe((_slide) => {
         if (_slide === SlideNumber.Gobernacion) {
-          updateMap()
+          updateMap();
+          titleSlide.set("Experiencia");
           container!.style.display = "flex";
-          container!.style.opacity = '1';
-      } else {
+          container!.style.opacity = "1";
+        } else {
           container!.style.display = "none";
-          container!.style.opacity = '0';
-      }
+          container!.style.opacity = "0";
+        }
       });
       function updateMap() {
-        //addGeometry()
+        addGeometry()
         map.animateTo(
-        {
-          zoom: 9,
-          center: [-76.9264689, 3.9464035],
-          pitch: 0,
-          bearing: 0,
-        },
-        {
-          duration: ANIMATION_DURATION * 2.5,
-          easing: 'in',
-        }
+          {
+            zoom: 9,
+            center: [-76.9264689, 3.9464035],
+            pitch: 0,
+            bearing: 0,
+          },
+          {
+            duration: ANIMATION_DURATION,
+            easing: "in",
+          }
         );
-        clearMap(map, "");
+        clearMap(map, "e3");
+      }
+
+      function addGeometry() {
+        const ecData = vias.features.map((featue, id) => {
+          let coords = featue.geometry.coordinates[0];
+          let lineStyle = {
+            normal: {
+              color: DEFAULT_GEOMETRY_COLOR,
+            },
+          };
+          return {
+            coords,
+            lineStyle,
+          }
+        });
+
+        let ecOption = {
+                'series': [ {
+                    'type': 'lines',
+                    'polyline': true,
+                    'data': ecData,
+                    'lineStyle': {
+                        'normal': {
+                            'width': 0
+                        }
+                    },
+                    'effect': {
+                        'constantSpeed': 20,
+                        'show': true,
+                        'trailLength': 0.5,
+                        'symbolSize': 1.5
+                    },
+                    'zlevel': 1
+                }]
+            };
+         
+        let e3Layer = new E3Layer('e3', ecOption, { hideOnZooming : true, hideOnRotating : true, hideOnMoving : true })
+            .addTo(map)
+        //new maptalks.E3Layer(id, ecOptions, options)
       }
     });
   });

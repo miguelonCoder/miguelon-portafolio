@@ -5,10 +5,11 @@ interface Props {
 	title: string;
 	body: string;
 	href: string;
+	hrefString?: string
 	skills: Array<{ name: string; link: string }>;
 }
 
-const { href, title, body, skills } = Astro.props;
+const { href, title, body, skills, hrefString = 'Ver resultados' } = Astro.props;
 ---
 
 <div class="card card-container">
@@ -20,7 +21,7 @@ const { href, title, body, skills } = Astro.props;
 	</div>
 	<div class="footer-card">
 		<div class="link-container">
-			<a class="link" target="_blank" href={href}>Ver Resultados</a>
+			<a class="link" target="_blank" href={href}>{hrefString}</a>
 		</div>
 		<div>
 			<ul class="list-skills">
@@ -29,7 +30,7 @@ const { href, title, body, skills } = Astro.props;
 						console.log(skill);
 
 						return (
-							<a href={skill.link}>
+							<a href={skill.link} target="_blank">
 								<img
 									class="img-skill"
 									src={`./images/${skill.name.toLowerCase()}.png`}
