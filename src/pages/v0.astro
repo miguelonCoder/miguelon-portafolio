@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import Map from '../components/Map.astro'
+import Welcome from '../components/Welcome.astro';
+import Description from '../components/Description.astro';
+import Experience from '../components/Skills.astro';
+import WorkAlcaldia from '../components/WorkAlcaldia.astro';
+import WorkUnivalle from '../components/WorkUnivalle.astro';
+import WorkGobernacion from '../components/WorkGobernacion.astro';
+import Contact from '../components/Contact.astro';
+import Skills from '../components/Skills.astro';
+import Now from '../components/Now.astro';
+import Resources from '../components/Resources.astro';
+import WorkITA from '../components/WorkITA.astro';
+---
+
+<Layout title="Miguelon Coder">
+	<main id="main">
+		<Contact/>
+		<Welcome/>
+		<Skills/>
+		<Description/>
+		<WorkAlcaldia/>
+		<WorkUnivalle/>
+		<WorkITA/>
+		<WorkGobernacion/>
+		<Now/>
+		<Resources/>
+		<div id="filter" class="filter"></div>
+		<Map/>
+	</main>
+</Layout>
+
+<style>
+	main {
+		width: 100vw;
+		height: 100svh;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+</style>
+
+<script>
+
+import { slide } from '../store.js';
+
+const FIRST_SLIDE = 0
+const THREESHOLD_SCROLL = 340
+const LAST_SLIDE = 8
+
+document.addEventListener("DOMContentLoaded", function (event) {
+	//event listeners for desktoop scrolls
+	let initialScrollUp = 0
+	let initialScrollDown = 0
+	const main = document.getElementById('main')
+	
+	document.body.addEventListener('wheel', wheel)
+
+	let initialPosition = FIRST_SLIDE
+	document.body.addEventListener('touchstart', touchStart)
+
+	document.body.addEventListener('touchend', touchEnd)
+
+	document.body.addEventListener('touchmove', touchMove)
+
+	
+	
+	
+
+	//Event functions
+	function wheel(event: WheelEvent){
+		initialScrollDown = event.deltaY < 0 ? initialScrollDown -= event.deltaY : initialScrollDown
+		initialScrollUp = event.deltaY > 0 ? initialScrollUp += event.deltaY : initialScrollUp
+
+		if(initialScrollUp > THREESHOLD_SCROLL ){
+			if ( slide.value != LAST_SLIDE) {
+				updateSlide( 1 )
+				console.log(slide.value)
+			}
+			initialScrollUp = 0
+			initialScrollDown = 0
+		}
+
+		if(initialScrollDown > THREESHOLD_SCROLL ){
+			if ( slide.value != FIRST_SLIDE) {
+				updateSlide( -1 )
+				console.log(slide.value)
+			}
+			initialScrollDown = 0
+			initialScrollUp = 0
+		}
+	}
+
+	function touchMove(event: TouchEvent){
+		event.preventDefault()
+	}
+
+	function touchStart (event: TouchEvent) {
+		initialPosition = event.targetTouches[0].screenY
+	}
+
+	function touchEnd(event: TouchEvent){
+		const deltaPosition = event.changedTouches[0].screenY - initialPosition
+		if(deltaPosition > 50	) {
+			if ( slide.value != FIRST_SLIDE) updateSlide( -1 )
+		}
+		if(deltaPosition < -50){
+			if ( slide.value != LAST_SLIDE) updateSlide( 1 )
+		}
+	}
+})
+
+function updateSlide( delta: number ){
+	slide.set( slide.get() + delta)
+}
+</script>

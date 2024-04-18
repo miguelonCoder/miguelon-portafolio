@@ -4,19 +4,19 @@ import "../styles/works.css";
 ---
 
 <div
-  id="container-alcaldia"
-  class="container base-container alcaldia-container animated"
+  id="container-deporte"
+  class="container base-container deporte-container animated"
 >
   <Card
-    title="Sistema de inventario de Bienes Inmuebles (2020-2022)"
-    body="Desarrollé un sistema de inventario para estandarizar y automatizar la identificación de los predios pertenecientes al municipio de Cali, integrando aplicaciones en la web con bases de datos de postgres, los paquetes de ofimática de Google y algorítmos de geoprocesamiento en Python. La información sensada se despliega continuamente en el Geoportal de SIBICA, desarrollado por otro equipo de trabajo del mismo organísmo haciendo uso de Arcgis Online."
+    title="Sistema de Gestión de Escenarios Deportivos (2023-2024)"
+    body="Diseño de la arquitectura del software e implementación del Sistema de Gestión de los Escenarios Deportivos de la Ciudad de Cali. Esta aplicación se desarrolló con un sistema de permisos granular basada en roles personalizables, aplicando una combinación entre las estrategias RBAC y ABAC."
     hrefString="Ver geoportal"
-    href="https://geoportal.cali.gov.co/arcgis/apps/webappviewer/index.html?id=4149f814be5442fe8f7ffb9b41d3cf48"
+    href="http://sider.cali.gov.co:8083/"
     skills={[
       { name: "Postgres", link: "https://www.postgresql.org/" },
-      { name: "js", link: "https://www.javascript.com/" },
-      { name: "Python", link: "https://www.python.org/" },
-      { name: "GAS", link: "https://developers.google.com/apps-script" },
+      { name: "Nestjs", link: "https://www.javascript.com/" },
+      { name: "Angular", link: "https://www.python.org/" },
+      { name: "Docker", link: "https://developers.google.com/apps-script" },
     ]}
   />
   <div id="scroll-indicator" class="scroll-indicator animated">
@@ -58,10 +58,10 @@ import "../styles/works.css";
   import { properties } from "../geodata/properties";
 
   document.addEventListener("DOMContentLoaded", function (event) {
-    const container = document.getElementById("container-alcaldia");
+    const container = document.getElementById("container-deporte");
     sharedMap.subscribe((map) => {
       slide.subscribe((_slide) => {
-        if (_slide === SlideNumber.Alcaldia) {
+        if (_slide === SlideNumber.Deporte) {
           updateMap();
           titleSlide.set("Experiencia");
           container!.style.display = "flex";
@@ -76,19 +76,19 @@ import "../styles/works.css";
           {
             zoom: 17,
             center: [-76.532626, 3.460315],
-            pitch: 30,
-            bearing: -60,
+            pitch: 20,
+            bearing: 60,
           },
           {
             duration: ANIMATION_DURATION,
             easing: "out",
           }
         );
-        clearMap(map, "properties");
+        clearMap(map, "deportes");
       }
 
       function addGeometry() {
-        const propertiesLayer = new maptalks.VectorLayer("properties");
+        const propertiesLayer = new maptalks.VectorLayer("deportes");
         propertiesLayer.addTo(map);
         const geometries = maptalks.GeoJSON.toGeometry(
           properties,

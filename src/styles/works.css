@@ -6,6 +6,11 @@
   height: calc(100% - 200px);
 }
 
+.deporte-container {
+  display: none;
+}
+
+
 .alcaldia-container {
   display: none;
 }

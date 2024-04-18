@@ -46,8 +46,17 @@ import Title from "./Title.astro";
         </g>
       </g>
     </svg>
-    <a href="https://www.linkedin.com/in/miguel-angel-ramirez-87b38b166" target="_blank" id="brand-name" class="brand-link">@miguelonCoder</a>
+    <a
+      href="https://www.linkedin.com/in/miguel-angel-ramirez-87b38b166"
+      target="_blank"
+      id="brand-name"
+      class="brand-link">@miguelonCoder</a
+    >
   </div>
+  <!-- <div id="lang" class="lang-container">
+      <span id="es-lang" class="item-lang">ES</span>
+      <span id="en-lang" class="item-lang">EN</span>
+  </div> -->
 </div>
 <script>
   import { slide, titleSlide, sharedMap } from "../store.js";
@@ -65,41 +74,45 @@ import Title from "./Title.astro";
         const icon = document.getElementsByClassName("cls-1");
         const brandName = document.getElementById("brand-name");
 
-        if (currentTarget == SlideNumber.Welcome && _slide == SlideNumber.Welcome + 1) {
+        if (
+          currentTarget == SlideNumber.Welcome &&
+          _slide == SlideNumber.Welcome + 1
+        ) {
+          container!.style.height = "60px";
+          container!.style.flexDirection = "row";
+          container!.style.justifyContent = "space-between";
 
-            container!.style.height = "60px";
-            container!.style.flexDirection = "row";
-            container!.style.justifyContent = "space-between";
+          Array.prototype.forEach.call(icon, (path) => {
+            path.style.fill = "cornflowerblue";
+          });
 
-            Array.prototype.forEach.call(icon, (path) => {
-              path.style.fill = "cornflowerblue";
-            });
+          photo!.style.display = "none";
 
-            photo!.style.display = "none";
-
-            brandName!.style.display = "none";
-            rol!.style.display = "none";
-            name!.style.display = "none";
-
+          brandName!.style.display = "none";
+          rol!.style.display = "none";
+          name!.style.display = "none";
         }
 
-        if (currentTarget > SlideNumber.Welcome && _slide == SlideNumber.Welcome) {
+        if (
+          currentTarget > SlideNumber.Welcome &&
+          _slide == SlideNumber.Welcome
+        ) {
           updateMap();
           titleSlide.set("Hola! Soy");
 
-            container!.style.height = "100%";
-            container!.style.flexDirection = "column";
-            container!.style.justifyContent = "center";
+          container!.style.height = "100%";
+          container!.style.flexDirection = "column";
+          container!.style.justifyContent = "center";
 
-            Array.prototype.forEach.call(icon, (path) => {
-              path.style.fill = "#bbbecf";
-            });
+          Array.prototype.forEach.call(icon, (path) => {
+            path.style.fill = "#bbbecf";
+          });
 
-            photo!.style.display = "block";
+          photo!.style.display = "block";
 
-            brandName!.style.display = "inline";
-            rol!.style.display = "block";
-            name!.style.display = "block";
+          brandName!.style.display = "inline";
+          rol!.style.display = "block";
+          name!.style.display = "block";
         }
         currentTarget = _slide;
       });

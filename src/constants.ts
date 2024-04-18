@@ -2,6 +2,7 @@ export enum SlideNumber {
   Welcome,
   Description,
   Skills,
+  Deporte,
   Alcaldia,
   Univalle,
   Ita,
